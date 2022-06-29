@@ -1,23 +1,23 @@
-Regione,Impianto centralizzato,Impianto autonomo,Apparecchi singoli,Impianto centralizzato,Impianto autonomo,Apparecchi singoli,Impianto centralizzato o autonomo,Condizionatori solo freddo,Climatizzatori caldo/freddo,Totale apparecchi singoli
-Piemonte,38,2,60,2,33,8,12,7,66,4,24,7,7,7,10,6,15,4,23,5
-Valle Aosta,37,2,59,5,36,9,21,8,58,26,1,1,2,1,1,8,3,8
-Liguria,28,8,66,9,33,5,13,69,6,21,6,9,2,8,6,16,8,23,5
-Lombardia,35,2,64,8,37,7,12,7,69,8,21,1,17,15,4,25,8,37,8
-Trentino-Alto Adige,41,2,61,38,7,33,64,1,9,2,4,4,6,2,6,5,11,6
-Bolzano,54,3,50,35,2,44,8,52,6,9,9,4,1,6,6,10,7
-Trento,28,7,71,6,42,1,21,6,75,8,5,4,6,6,3,6,9,12,5
-Veneto,10,8,87,51,3,6,9,86,6,9,5,25,18,2,37,7,51,6
-Friuli-Venezia Giulia,15,81,5,54,8,9,1,81,2,13,5,13,9,12,4,32,3,40,9
-Emilia-Romagna,15,83,9,44,6,9,7,83,1,10,3,19,8,19,6,32,1,46,9
-Toscana,10,9,85,44,4,8,85,5,13,8,4,13,9,24,34,3
-Umbria,8,1,90,4,51,7,4,3,90,11,6,4,8,9,7,17,7,23,8
-Marche,6,4,92,5,40,7,5,3,91,6,5,5,8,5,10,9,20,9,28
-Lazio,22,9,73,2,50,5,3,8,75,7,24,1,8,2,13,5,38,1,46,8
-Abruzzo,4,1,93,2,44,7,3,91,2,8,7,5,3,11,4,18,7,27,2
-Molise,6,6,86,38,9,2,9,84,4,15,6,3,6,6,8,12,4,17,7
-Campania,6,8,69,1,57,1,1,9,72,2,28,3,5,5,13,2,36,43,2
-Puglia,4,2,82,3,54,9,2,1,78,2,23,3,7,9,18,40,7,52,6
-Basilicata,4,5,85,3,42,3,1,6,82,7,20,4,4,5,7,7,16,6,21,7
-Calabria,3,9,66,9,59,4,1,6,67,6,35,5,4,5,10,6,35,41
-Sicilia,2,7,53,3,67,2,0,8,55,8,47,6,6,2,18,2,50,2,60
-Sardegna,7,44,8,78,4,1,3,41,65,6,11,2,10,50,8,54,5
+Regione;Impianto centralizzato riscaldamento abitazione;Impianto autonomo riscaldamento abitazione;Apparecchi singoli riscaldamento abitazione;Impianto centralizzato acqua calda;Impianto autonomo acqua calda;Apparecchi singoli acqua calda;Impianto centralizzato o autonomo;Condizionatori solo freddo;Climatizzatori caldo/freddo;Totale apparecchi singoli
+Piemonte;38.2;60.2;33.8;12.7;66.4;24.7;7.7;10.6;15.4;23.5
+Valle Aosta;37.2;59.5;36.9;21.8;58;26.1;1;2.1;1.8;3.8
+Liguria;28.8;66.9;33.5;13;69.6;21.6;9.2;8.6;16.8;23.5
+Lombardia;35.2;64.8;37.7;12.7;69.8;21.1;17;15.4;25.8;37.8
+Trentino-Alto Adige;41.2;61;38.7;33;64.1;9.2;4.4;6.2;6.5;11.6
+Bolzano;54.3;50;35.2;44.8;52.6;9.9;4.1;6;6;10.7
+Trento;28.7;71.6;42.1;21.6;75;8.5;4.6;6.3;6.9;12.5
+Veneto;10.8;87;51.3;6.9;86.6;9.5;25;18.2;37.7;51.6
+Friuli-Venezia Giulia;15;81.5;54.8;9.1;81.2;13.5;13.9;12.4;32.3;40.9
+Emilia-Romagna;15;83.9;44.6;9.7;83.1;10.3;19.8;19.6;32.1;46.9
+Toscana;10.9;85;44;4.8;85.5;13;8.4;13.9;24;34.3
+Umbria;8.1;90.4;51.7;4.3;90;11.6;4.8;9.7;17.7;23.8
+Marche;6.4;92.5;40.7;5.3;91.6;5.5;8.5;10.9;20.9;28
+Lazio;22.9;73.2;50.5;3.8;75.7;24.1;8.2;13.5;38.1;46.8
+Abruzzo;4.1;93.2;44.7;3;91.2;8.7;5.3;11.4;18.7;27.2
+Molise;6.6;86;38.9;2.9;84.4;15.6;3.6;6.8;12.4;17.7
+Campania;6.8;69.1;57.1;1.9;72.2;28.3;5.5;13.2;36;43.2
+Puglia;4.2;82.3;54.9;2.1;78.2;23.3;7.9;18;40.7;52.6
+Basilicata;4.5;85.3;42.3;1.6;82.7;20.4;4.5;7.7;16.6;21.7
+Calabria;3.9;66.9;59.4;1.6;67.6;35.5;4.5;10.6;35;41
+Sicilia;2.7;53.3;67.2;0.8;55.8;47.6;6.2;18.2;50.2;60
+Sardegna;7;44.8;78.4;1.3;41;65.6;11.2;10;50.8;54.5

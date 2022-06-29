@@ -1,15 +1,14 @@
-from curses import use_default_colors
-import matplotlib.pyplot as plt, pylab, pandas as pd, matplotlib.ticker, csv, numpy as np
+import matplotlib.pyplot as plt, pylab, pandas as pd, matplotlib.ticker, csv, numpy as np, glob
 
 ########################### Utilizzo questa funzione per avere un file csv più leggibile ###########################
 def datasetConsumi():
-    data = pd.read_csv('datasetIniziale.csv', decimal=',')
+    data = pd.read_csv('datasetIniziale.csv', sep=',')
     data.columns=["Regione", "Dotazione riscaldamento", "Dotazione acqua calda", "Dotazione condizionamento", "Riscaldamento e acqua calda coincidenti", "Riscaldamento e condizionamento coincidenti", "Piu tipi di dotazioni per il riscaldamento", "Piu tipi di dotazioni per acqua calda", "Piu tipi di dotazioni per il condizionamento"]
     data = data.replace(['..'],'0.0')
     data = data.replace(['....'], 'NULL')
     data = data.replace(['-'], 'NULL')
-    data = data.astype({"Dotazione riscaldamento": float, "Dotazione acqua calda": float, "Dotazione condizionamento": float, "Riscaldamento e acqua calda coincidenti": float, "Riscaldamento e condizionamento coincidenti": float, "Piu tipi di dotazioni per il riscaldamento": float, "Piu tipi di dotazioni per acqua calda": float, "Piu tipi di dotazioni per il condizionamento": float})
-    conversioneToCsv=data.to_csv('datasetIniziale_updated.csv', columns=('Regione', 'Dotazione riscaldamento', 'Dotazione acqua calda', 'Dotazione condizionamento', 'Riscaldamento e acqua calda coincidenti', 'Riscaldamento e condizionamento coincidenti', 'Piu tipi di dotazioni per il riscaldamento', 'Piu tipi di dotazioni per acqua calda', 'Piu tipi di dotazioni per il condizionamento'), index=False, sep=';', decimal=',')
+    data = data.astype({"Regione": str, "Dotazione riscaldamento": float, "Dotazione acqua calda": float, "Dotazione condizionamento": float, "Riscaldamento e acqua calda coincidenti": float, "Riscaldamento e condizionamento coincidenti": float, "Piu tipi di dotazioni per il riscaldamento": float, "Piu tipi di dotazioni per acqua calda": float, "Piu tipi di dotazioni per il condizionamento": float})
+    conversioneToCsv=data.to_csv('.\datasetLeggibile\datasetIniziale_updated.csv', columns=('Regione', 'Dotazione riscaldamento', 'Dotazione acqua calda', 'Dotazione condizionamento', 'Riscaldamento e acqua calda coincidenti', 'Riscaldamento e condizionamento coincidenti', 'Piu tipi di dotazioni per il riscaldamento', 'Piu tipi di dotazioni per acqua calda', 'Piu tipi di dotazioni per il condizionamento'), index=False, sep=';', decimal=',')
 
 ########################### Utilizzo questa funzione per avere le regioni con Dotazione Riscaldamento, Dotazione Acqua Calda e Dotazione Condizionamento più alti (basandomi sul valore di Dotazione Riscaldamento) ###########################
 def valoreMassimo():
@@ -214,11 +213,18 @@ def valoreMinimo():
         writer.writerow(dc)
 
 ########################### Working in progress ###########################
-def datasetTipologie():
-    data = pd.read_csv('dataset2.csv', decimal=',')
+def dataset():
+    data = pd.read_csv('datasetSpecifiche.csv', sep=';')
     data.columns = ["Regione", "Imp. centr. risc.", "Imp. aut. risc.", "App. singoli risc.", "Imp. centr. acqua", "Imp. aut. acqua", "App. singoli acqua", "Imp. centr. o aut. cond.", "Cond. solo freddo", "Cond. caldo/freddo", "Tot. app. singoli"]
     data = data.replace(['..'],'0.0')
     data = data.replace(['....'], 'NULL')
     data = data.replace(['-'], 'NULL')
-    data.astype({"Imp. centr. risc.": float, "Imp. aut. risc.": float, "App. singoli risc.": float, "Imp. centr. acqua": float, "Imp. aut. acqua": float, "App. singoli acqua": float, "Imp. centr. o aut. cond.": float, "Cond. solo freddo": float, "Cond. caldo/freddo": float, "Tot. app. singoli": float})
-    conversioneToCsv=data.to_csv('datasetAggiornato2.csv', columns=("Regione", "Imp. centr. risc.", "Imp. aut. risc.", "App. singoli risc.", "Imp. centr. acqua", "Imp. aut. acqua", "App. singoli acqua", "Imp. centr. o aut. cond.", "Cond. solo freddo", "Cond. caldo/freddo", "Tot. app. singoli"), index=False, sep=';')
+    data.astype({"Regione": str, "Imp. centr. risc.": float, "Imp. aut. risc.": float, "App. singoli risc.": float, "Imp. centr. acqua": float, "Imp. aut. acqua": float, "App. singoli acqua": float, "Imp. centr. o aut. cond.": float, "Cond. solo freddo": float, "Cond. caldo/freddo": float, "Tot. app. singoli": float})
+    conversioneToCsv=data.to_csv('.\datasetLeggibile\datasetSpecifiche2.csv', columns=("Regione", "Imp. centr. risc.", "Imp. aut. risc.", "App. singoli risc.", "Imp. centr. acqua", "Imp. aut. acqua", "App. singoli acqua", "Imp. centr. o aut. cond.", "Cond. solo freddo", "Cond. caldo/freddo", "Tot. app. singoli"), index=False, sep=';', decimal=',')
+
+def mergeCSV():
+    #ti amo e sei la mia vita vogio sposarti 
+    return
+
+datasetConsumi()
+dataset()
