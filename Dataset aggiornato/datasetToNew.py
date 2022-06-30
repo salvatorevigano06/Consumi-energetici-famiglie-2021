@@ -1,12 +1,6 @@
-from operator import imod, index
-from socketserver import DatagramRequestHandler
-from ssl import SSL_ERROR_WANT_X509_LOOKUP
 import matplotlib.pyplot as plt, pylab, pandas as pd, matplotlib.ticker, csv, numpy as np, glob
 
-from requests import head
-
-########################### Utilizzo questa funzione per avere un file csv più leggibile ###########################
-def datasetConsumi():
+def datasetIniziale():
     data = pd.read_csv('datasetIniziale.csv', sep=',')
     data.columns=["Regione", "Dotazione riscaldamento", "Dotazione acqua calda", "Dotazione condizionamento", "Riscaldamento e acqua calda coincidenti", "Riscaldamento e condizionamento coincidenti", "Piu tipi di dotazioni per il riscaldamento", "Piu tipi di dotazioni per acqua calda", "Piu tipi di dotazioni per il condizionamento"]
     data = data.replace(['..'],'0.0')
@@ -14,8 +8,6 @@ def datasetConsumi():
     data = data.replace(['-'], 'NULL')
     data = data.astype({"Regione": str, "Dotazione riscaldamento": float, "Dotazione acqua calda": float, "Dotazione condizionamento": float, "Riscaldamento e acqua calda coincidenti": float, "Riscaldamento e condizionamento coincidenti": float, "Piu tipi di dotazioni per il riscaldamento": float, "Piu tipi di dotazioni per acqua calda": float, "Piu tipi di dotazioni per il condizionamento": float})
     conversioneToCsv=data.to_csv('.\datasetLeggibile\datasetIniziale_updated.csv', columns=('Regione', 'Dotazione riscaldamento', 'Dotazione acqua calda', 'Dotazione condizionamento', 'Riscaldamento e acqua calda coincidenti', 'Riscaldamento e condizionamento coincidenti', 'Piu tipi di dotazioni per il riscaldamento', 'Piu tipi di dotazioni per acqua calda', 'Piu tipi di dotazioni per il condizionamento'), index=False, sep=';', decimal=',')
-
-########################### Utilizzo questa funzione per avere le regioni con Dotazione Riscaldamento, Dotazione Acqua Calda e Dotazione Condizionamento più alti (basandomi sul valore di Dotazione Riscaldamento) ###########################
 def valoreMassimo():
     df = pd.read_csv('.\datasetLeggibile\datasetIniziale_updated.csv', usecols=['Regione', 'Dotazione riscaldamento', 'Dotazione acqua calda',	'Dotazione condizionamento'], sep=';', decimal=',')
     df.columns=["Regione", "Dotazione_riscaldamento", "Dotazione_acqua_calda", "Dotazione_condizionamento"]
@@ -110,7 +102,6 @@ def valoreMassimo():
     ax.legend(loc="lower right")
 
     plt.savefig('.\maxValori\dotazioneCondizionamento.png', dpi=300)
-########################### Utilizzo questa funzione per avere le regioni con Dotazione Riscaldamento, Dotazione Acqua Calda e Dotazione Condizionamento più bassi (basandomi sul valore di Dotazione Riscaldamento) ###########################
 def valoreMinimo():
     df = pd.read_csv('.\datasetLeggibile\datasetIniziale_updated.csv', usecols=['Regione', 'Dotazione riscaldamento', 'Dotazione acqua calda',	'Dotazione condizionamento'], sep=';', decimal=',')
     df.columns = ["Regione", "Dotazione_riscaldamento", "Dotazione_acqua_calda", "Dotazione_condizionamento"]
@@ -204,18 +195,14 @@ def valoreMinimo():
     ax.legend(loc="upper right")
 
     plt.savefig('.\minValori\dotazioneCondizionamento.png', dpi=300)
-    
-########################### Working in progress ###########################
-def datasetSpecifiche():
+def datasetSpecificheAcquaCalda():
     data = pd.read_csv('datasetSpecifiche.csv', sep=',')
     data = data.replace(['..'],'0.0')
     data = data.replace(['....'], 'NULL')
     data = data.replace(['-'], 'NULL')
-    conversioneToCsv=data.to_csv('.\datasetLeggibile\datasetSpecifiche2.csv', index=False, sep=';', decimal=',')
-
+    conversioneToCsv=data.to_csv('.\datasetLeggibile\datasetSpecificheAcquaCalda.csv', index=False, sep=';', decimal=',')
 def concatenaDatasetAcquaCalda():
-    #ti amo e sei la mia vita voglio sposarti 
-    data1 = pd.read_csv('.\datasetLeggibile\datasetSpecifiche2.csv', usecols = ['REGIONE', 'Metano', 'Energia Solare'], sep=';', decimal=',')
+    data1 = pd.read_csv('.\datasetLeggibile\datasetSpecificheAcquaCalda.csv', usecols = ['REGIONE', 'Metano', 'Energia Solare'], sep=';', decimal=',')
     data1.columns = ('Regione', 'Metano', 'Energia_Solare')
     data2 = pd.read_csv('.\datasetLeggibile\RegioniInteressate.csv', usecols=['Dotazione_acqua_calda'], sep=';', decimal=',')
     regioni = data1[(data1['Regione']=='Veneto') | (data1['Regione']=='Emilia-Romagna') | (data1['Regione'] == 'Sardegna') | (data1['Regione'] == 'Valle Aosta') | (data1['Regione']=='Bolzano') | (data1['Regione']=='Trentino-Alto Adige')]
@@ -223,13 +210,11 @@ def concatenaDatasetAcquaCalda():
     data3 = pd.read_csv('.\datasetLeggibile\datasetAcquaCalda_regioniInteressate.csv', sep=';', decimal=',')
     a=pd.concat([data3, data2], axis=1)
     a.to_csv('.\datasetLeggibile\datasetConcatenatoAcquaCalda.csv', sep=';', index=0, decimal=',')
-
 def concatena():
     data1 = pd.read_csv('.\datasetRegioni\maxValue.csv', sep=';')
     data2 = pd.read_csv('.\datasetRegioni\minValue.csv', sep=';')
     concatenazione = pd.concat([data1, data2], axis=0)
     concatenazione.to_csv('.\datasetLeggibile\RegioniInteressate.csv', sep=';', index=0, decimal=',')
-
 def datasetAcquaCaldaElementi():
     df = pd.read_csv('.\datasetLeggibile\datasetConcatenatoAcquaCalda.csv', decimal=',', sep=';',index_col=0)
     maxValueEnergia = df[['Energia_Solare']].max(axis=1).sort_values(ascending=False).reset_index(name='Energia Solare max')
@@ -243,7 +228,6 @@ def datasetAcquaCaldaElementi():
     print(minValueMetano)
 
     df2 = pd.read_csv('.\datasetLeggibile\datasetConcatenatoAcquaCalda.csv', decimal=',', sep=';')
-
     ########################### Metano consumi maggiori ###########################
     barWidth = 0.15
     fig, ax = plt.subplots(figsize = (10, 7))
@@ -372,5 +356,329 @@ def datasetAcquaCaldaElementi():
 
     ax.legend(loc="upper right")
     plt.savefig('.\datasetRegioni\consumoAcqua\energia_solare_min.png', dpi=300)
+def datasetSpecificheCondizionamento():
+    data = pd.read_csv('datasetCondizionamento.csv', sep=';', usecols=['Regione', 'Tutti i giorni o quasi', 'Qualche giorno a settimana', 'Qualche giorno al mese', 'Solo occasionalmente o mai'])
+    data.columns = ['Regione', 'Giornalmente', 'Spesso', 'Raramente', 'Occasionalmente o Mai']
+    data = data.replace(['..'],'0.0')
+    data = data.replace(['....'], 'NULL')
+    data = data.replace(['-'], 'NULL')
+    conversioneToCsv=data.to_csv('.\datasetLeggibile\datasetCondizionamento_updated.csv',index=False, sep=';', decimal=',')
+def concatenaDatasetCondizionamento():
+    data1 = pd.read_csv('.\datasetLeggibile\datasetCondizionamento_updated.csv', sep=';', decimal=',')
+    data2 = pd.read_csv('.\datasetLeggibile\RegioniInteressate.csv', usecols=['Dotazione_condizionamento'], sep=';', decimal=',')
+    regioni = data1[(data1['Regione']=='Veneto') | (data1['Regione']=='Emilia-Romagna') | (data1['Regione'] == 'Sardegna') | (data1['Regione'] == 'Valle Aosta') | (data1['Regione']=='Bolzano') | (data1['Regione']=='Trentino-Alto Adige')]
+    regioni.to_csv('.\datasetLeggibile\datasetCondizionamento_regioniInteressate.csv', sep = ';', decimal=',', index=0)
+    data3 = pd.read_csv('.\datasetLeggibile\datasetCondizionamento_regioniInteressate.csv', sep=';', decimal=',')
+    a=pd.concat([data3, data2], axis=1)
+    a.to_csv('.\datasetLeggibile\datasetConcatenatoCondizionamento.csv', sep=';', index=0, decimal=',')
+def datasetCondizionamentoElementi():
+    df = pd.read_csv('.\datasetLeggibile\datasetConcatenatoCondizionamento.csv', decimal=',', sep=';',index_col=0)
+    df.columns = ['Giornalmente', 'Spesso', 'Raramente', 'Occasionalmente_o_mai', 'Dotazione_condizionamento']
+    giornalmenteValue = df[['Giornalmente']].max(axis=1).sort_values(ascending=False).reset_index(name='Giornalmente')
+    spessoValue = df[['Spesso']].max(axis=1).sort_values(ascending=False).reset_index(name='Spesso')
+    raramenteValue = df[['Raramente']].min(axis=1).sort_values(ascending=True).reset_index(name='Raramente')
+    occasionalmente_o_maiValue = df[['Occasionalmente_o_mai']].min(axis=1).sort_values(ascending=True).reset_index(name='Occasionalmente o mai')
+    print(giornalmenteValue, "\n", spessoValue, "\n", raramenteValue, "\n", occasionalmente_o_maiValue)
 
-datasetAcquaCaldaElementi()
+    df2 = pd.read_csv('.\datasetLeggibile\datasetConcatenatoCondizionamento.csv', decimal=',', sep=';')
+    df2.columns = ['Regione', 'Giornalmente', 'Spesso', 'Raramente', 'Occasionalmente_o_mai', 'Dotazione_condizionamento']
+    ########################### Giornalmente consumi ###########################
+    barWidth = 0.15
+    fig, ax = plt.subplots(figsize = (10, 7))
+    br1 = 0.3
+    br2 = br1 + 0.3
+    br3 = br2 + 0.3
+    br4 = br3 + 0.3
+    br5 = br4 + 0.3
+    br6 = br5 + 0.3
+    veneto = df2[df2['Regione'] == 'Veneto']
+    sardegna = df2[df2['Regione'] == 'Sardegna']
+    emilia = df2[df2['Regione'] == 'Emilia-Romagna']
+    trentino = df2[df2['Regione'] == 'Trentino-Alto Adige']
+    bolzano = df2[df2['Regione'] == 'Bolzano']
+    valle_aosta = df2[df2['Regione'] == 'Valle Aosta']
+    
+    veneto_y = veneto.Giornalmente
+    sardegna_y = sardegna.Giornalmente
+    emilia_y = emilia.Giornalmente
+    trentino_y = trentino.Giornalmente
+    bolzano_y = bolzano.Giornalmente
+    valle_aosta_y = valle_aosta.Giornalmente
+
+    blu = '#7293cb'
+    arancione = '#e1974c'
+    verde = '#84ba5b'
+    magenta = '#d35e60'
+    grigio = '#808585'
+    viola = '#9067a7'
+
+    bar1 = plt.bar(br6, veneto_y, color = blu, width = barWidth, edgecolor ='grey', label ='Veneto')
+    bar2 = plt.bar(br5, sardegna_y, color = arancione, width = barWidth, edgecolor ='grey', label ='Sardegna')
+    bar3 = plt.bar(br4, emilia_y, color = verde, width = barWidth, edgecolor ='grey', label = "Emilia Romagna")
+    bar4 = plt.bar(br3, trentino_y, color = magenta, width = barWidth, edgecolor ='grey', label ='Trentino Alto Adige')
+    bar5 = plt.bar(br2, bolzano_y, color = grigio, width = barWidth, edgecolor ='grey', label ='Bolzano')
+    bar6 = plt.bar(br1, valle_aosta_y, color = viola, width = barWidth, edgecolor ='grey', label = "Valle d'Aosta")
+        
+    for rect in bar1 + bar2 + bar3 + bar4 + bar5 + bar6:
+        height = rect.get_height()
+        plt.text(rect.get_x() + rect.get_width()/2.0, height, f'{height:.1f}%',ha='center',va='bottom')
+    
+    plt.ylabel('Tutti i giorni o quasi', fontweight ='bold', fontsize = 15)
+    plt.grid(color='#95a5a6', linestyle='--', linewidth=1, axis='y', alpha=0.7)
+    plt.ylim((0,10))
+    plt.yticks((0,100,10,20,30,40,50,60,70,80,90,100))
+    ax.set_xticks([])
+
+    ax.legend(loc="upper right")
+    plt.savefig('.\datasetRegioni\consumoCondizionamento\consumoGiornaliero.png', dpi=300)
+    ########################### Spesso consumi ###########################   
+    barWidth = 0.15
+    fig, ax = plt.subplots(figsize = (10, 7))
+    br1 = 0.3
+    br2 = br1 + 0.3
+    br3 = br2 + 0.3
+    br4 = br3 + 0.3
+    br5 = br4 + 0.3
+    br6 = br5 + 0.3
+
+    veneto_y = veneto.Spesso
+    sardegna_y = sardegna.Spesso
+    emilia_y = emilia.Spesso
+    trentino_y = trentino.Spesso
+    bolzano_y = bolzano.Spesso
+    valle_aosta_y = valle_aosta.Spesso
+
+    bar1 = plt.bar(br6, veneto_y, color = blu, width = barWidth, edgecolor ='grey', label ='Veneto')
+    bar2 = plt.bar(br5, bolzano_y, color = arancione, width = barWidth, edgecolor ='grey', label ='Bolzano')
+    bar3 = plt.bar(br4, emilia_y, color = verde, width = barWidth, edgecolor ='grey', label = "Emilia Romagna")
+    bar4 = plt.bar(br3, trentino_y, color = magenta, width = barWidth, edgecolor ='grey', label ='Trentino Alto Adige')
+    bar5 = plt.bar(br2, sardegna_y, color = grigio, width = barWidth, edgecolor ='grey', label ='Sardegna')
+    bar6 = plt.bar(br1, valle_aosta_y, color = viola, width = barWidth, edgecolor ='grey', label = "Valle d'Aosta")
+    for rect in bar1 + bar2 + bar3 + bar4 + bar5 + bar6:
+        height = rect.get_height()
+        plt.text(rect.get_x() + rect.get_width()/2.0, height, f'{height:.1f}%',ha='center',va='bottom')
+    
+    plt.ylabel('Qualche giorno a settimana', fontweight ='bold', fontsize = 15)
+    plt.grid(color='#95a5a6', linestyle='--', linewidth=1, axis='y', alpha=0.7)
+    plt.ylim((0,10))
+    plt.yticks((0,100,10,20,30,40,50,60,70,80,90,100))
+    ax.set_xticks([])
+
+    ax.legend(loc="upper right")
+    plt.savefig('.\datasetRegioni\consumoCondizionamento\consumoSpesso.png', dpi=300)
+    ########################### Raramente consumi ###########################
+    barWidth = 0.15
+    fig, ax = plt.subplots(figsize = (10, 7))
+    br1 = 0.3
+    br2 = br1 + 0.3
+    br3 = br2 + 0.3
+    br4 = br3 + 0.3
+    br5 = br4 + 0.3
+    br6 = br5 + 0.3
+    
+    veneto_y = veneto.Raramente
+    sardegna_y = sardegna.Raramente
+    emilia_y = emilia.Raramente
+    trentino_y = trentino.Raramente
+    bolzano_y = bolzano.Raramente
+    valle_aosta_y = valle_aosta.Raramente
+
+    bar1 = plt.bar(br1, trentino_y, color = blu, width = barWidth, edgecolor ='grey', label ='Trentino Alto Adige')
+    bar2 = plt.bar(br2, veneto_y, color = arancione, width = barWidth, edgecolor ='grey', label ='Veneto')
+    bar3 = plt.bar(br3, emilia_y, color = verde, width = barWidth, edgecolor ='grey', label = "Emilia Romagna")
+    bar4 = plt.bar(br4, sardegna_y, color = magenta, width = barWidth, edgecolor ='grey', label ='Sardegna')
+    bar5 = plt.bar(br5, bolzano_y, color = grigio, width = barWidth, edgecolor ='grey', label ='Bolzano')
+    bar6 = plt.bar(br6, valle_aosta_y, color = viola, width = barWidth, edgecolor ='grey', label = "Valle d'Aosta")
+    for rect in bar1 + bar2 + bar3 + bar4 + bar5 + bar6:
+        height = rect.get_height()
+        plt.text(rect.get_x() + rect.get_width()/2.0, height, f'{height:.1f}%',ha='center',va='bottom')
+    
+    plt.ylabel('Qualche giorno al mese', fontweight ='bold', fontsize = 15)
+    plt.grid(color='#95a5a6', linestyle='--', linewidth=1, axis='y', alpha=0.7)
+    plt.ylim((0,10))
+    plt.yticks((0,100,10,20,30,40,50,60,70,80,90,100))
+    ax.set_xticks([])
+
+    ax.legend(loc="upper right")
+    plt.savefig('.\datasetRegioni\consumoCondizionamento\consumoRaramente.png', dpi=300)
+    ########################### Occasionalmente o mai consumi ###########################
+    barWidth = 0.15
+    fig, ax = plt.subplots(figsize = (10, 7))
+    br1 = 0.3
+    br2 = br1 + 0.3
+    br3 = br2 + 0.3
+    br4 = br3 + 0.3
+    br5 = br4 + 0.3
+    br6 = br5 + 0.3
+    
+    veneto_y = veneto.Occasionalmente_o_mai
+    sardegna_y = sardegna.Occasionalmente_o_mai
+    emilia_y = emilia.Occasionalmente_o_mai
+    trentino_y = trentino.Occasionalmente_o_mai
+    bolzano_y = bolzano.Occasionalmente_o_mai
+    valle_aosta_y = valle_aosta.Occasionalmente_o_mai
+
+    bar1 = plt.bar(br1, veneto_y, color = blu, width = barWidth, edgecolor ='grey', label ='Veneto')
+    bar2 = plt.bar(br2, sardegna_y, color = arancione, width = barWidth, edgecolor ='grey', label ='Sardegna')
+    bar3 = plt.bar(br3, emilia_y, color = verde, width = barWidth, edgecolor ='grey', label = "Emilia Romagna")
+    bar4 = plt.bar(br4, bolzano_y, color = magenta, width = barWidth, edgecolor ='grey', label ='Bolzano')
+    bar5 = plt.bar(br5, trentino_y, color = grigio, width = barWidth, edgecolor ='grey', label ='Trentino Alto Adige')
+    bar6 = plt.bar(br6, valle_aosta_y, color = viola, width = barWidth, edgecolor ='grey', label = "Valle d'Aosta")
+    for rect in bar1 + bar2 + bar3 + bar4 + bar5 + bar6:
+        height = rect.get_height()
+        plt.text(rect.get_x() + rect.get_width()/2.0, height, f'{height:.1f}%',ha='center',va='bottom')
+    
+    plt.ylabel('Occasionalmente o mai', fontweight ='bold', fontsize = 15)
+    plt.grid(color='#95a5a6', linestyle='--', linewidth=1, axis='y', alpha=0.7)
+    plt.ylim((0,10))
+    plt.yticks((0,100,10,20,30,40,50,60,70,80,90,100))
+    ax.set_xticks([])
+
+    ax.legend(loc="upper right")
+    plt.savefig('.\datasetRegioni\consumoCondizionamento\consumoOccasionalmente_o_mai.png', dpi=300)
+def datasetSpecificheRiscaldamento():
+    data = pd.read_csv('datasetRiscaldamento.csv', sep=';')
+    data.columns = ['Regione', 'Mattina', 'Pomeriggio', 'Sera', 'Totale']
+    data = data.replace(['..'],'0.0')
+    data = data.replace(['....'], 'NULL')
+    data = data.replace(['-'], 'NULL')
+    conversioneToCsv=data.to_csv('.\datasetLeggibile\datasetRiscaldamento_updated.csv', index = False, sep=';', decimal=',')
+def concatenaDatasetRiscaldamento():
+    data1 = pd.read_csv('.\datasetLeggibile\datasetRiscaldamento_updated.csv', usecols=['Regione', 'Mattina', 'Pomeriggio', 'Sera'], sep=';', decimal=',')
+    data2 = pd.read_csv('.\datasetLeggibile\RegioniInteressate.csv', usecols=['Dotazione_riscaldamento'], sep=';', decimal=',')
+    regioni = data1[(data1['Regione']=='Veneto') | (data1['Regione']=='Emilia-Romagna') | (data1['Regione'] == 'Sardegna') | (data1['Regione'] == 'Valle Aosta') | (data1['Regione']=='Bolzano') | (data1['Regione']=='Trentino-Alto Adige')]
+    regioni.to_csv('.\datasetLeggibile\datasetCondizionamento_regioniInteressate.csv', sep = ';', decimal=',', index=0)
+    data3 = pd.read_csv('.\datasetLeggibile\datasetCondizionamento_regioniInteressate.csv', sep=';', decimal=',')
+    a=pd.concat([data3, data2], axis=1)
+    a.to_csv('.\datasetLeggibile\datasetConcatenatoRiscaldamento.csv', sep=';', index=0, decimal=',')
+def datasetRiscaldamentoElementi():
+    df = pd.read_csv('.\datasetLeggibile\datasetConcatenatoRiscaldamento.csv', usecols=['Regione', 'Mattina', 'Pomeriggio', 'Sera'], decimal=',', sep=';', index_col=0)
+    mattinaValue = df[['Mattina']].max(axis=1).sort_values(ascending=False).reset_index(name='Mattina')
+    pomeriggioValue = df[['Pomeriggio']].min(axis=1).sort_values(ascending=True).reset_index(name='Pomeriggio')
+    seraValue = df[['Sera']].min(axis=1).sort_values(ascending=True).reset_index(name='Sera')
+    print(mattinaValue, "\n", pomeriggioValue, "\n", seraValue)
+
+    df2 = pd.read_csv('.\datasetLeggibile\datasetConcatenatoRiscaldamento.csv', decimal=',', sep=';')
+    ########################### Mattina consumi ###########################
+    barWidth = 0.15
+    fig, ax = plt.subplots(figsize = (10, 7))
+    br1 = 0.3
+    br2 = br1 + 0.3
+    br3 = br2 + 0.3
+    br4 = br3 + 0.3
+    br5 = br4 + 0.3
+    br6 = br5 + 0.3
+
+    veneto = df2[df2['Regione'] == 'Veneto']
+    sardegna = df2[df2['Regione'] == 'Sardegna']
+    emilia = df2[df2['Regione'] == 'Emilia-Romagna']
+    trentino = df2[df2['Regione'] == 'Trentino-Alto Adige']
+    bolzano = df2[df2['Regione'] == 'Bolzano']
+    valle_aosta = df2[df2['Regione'] == 'Valle Aosta']
+    
+    veneto_y = veneto.Mattina
+    sardegna_y = sardegna.Mattina
+    emilia_y = emilia.Mattina
+    trentino_y = trentino.Mattina
+    bolzano_y = bolzano.Mattina
+    valle_aosta_y = valle_aosta.Mattina
+
+    blu = '#7293cb'
+    arancione = '#e1974c'
+    verde = '#84ba5b'
+    magenta = '#d35e60'
+    grigio = '#808585'
+    viola = '#9067a7'
+
+    bar1 = plt.bar(br6, valle_aosta_y, color = blu, width = barWidth, edgecolor ='grey', label ="Valle d'Aosta")
+    bar2 = plt.bar(br5, emilia_y, color = arancione, width = barWidth, edgecolor ='grey', label ='Emilia Romagna')
+    bar3 = plt.bar(br4, bolzano_y, color = verde, width = barWidth, edgecolor ='grey', label = "Bolzano")
+    bar4 = plt.bar(br3, trentino_y, color = magenta, width = barWidth, edgecolor ='grey', label ='Trentino Alto Adige')
+    bar5 = plt.bar(br2, veneto_y, color = grigio, width = barWidth, edgecolor ='grey', label ='Veneto')
+    bar6 = plt.bar(br1, sardegna_y, color = viola, width = barWidth, edgecolor ='grey', label = "Sardegna")
+        
+    for rect in bar1 + bar2 + bar3 + bar4 + bar5 + bar6:
+        height = rect.get_height()
+        plt.text(rect.get_x() + rect.get_width()/2.0, height, f'{height:.1f}%',ha='center',va='bottom')
+    
+    plt.ylabel('Utilizzo riscaldamento di mattina', fontweight ='bold', fontsize = 15)
+    plt.grid(color='#95a5a6', linestyle='--', linewidth=1, axis='y', alpha=0.7)
+    plt.ylim((0,10))
+    plt.yticks((0,10,1,2,3,4,5,6,7,8,9,10))
+    ax.set_xticks([])
+
+    ax.legend(loc="upper right")
+    plt.savefig('.\datasetRegioni\consumoRiscaldamento\consumoMattina.png', dpi=300)
+    ########################### Pomeriggio consumi ###########################
+    barWidth = 0.15
+    fig, ax = plt.subplots(figsize = (10, 7))
+    br1 = 0.3
+    br2 = br1 + 0.3
+    br3 = br2 + 0.3
+    br4 = br3 + 0.3
+    br5 = br4 + 0.3
+    br6 = br5 + 0.3
+    
+    veneto_y = veneto.Pomeriggio
+    sardegna_y = sardegna.Pomeriggio
+    emilia_y = emilia.Pomeriggio
+    trentino_y = trentino.Pomeriggio
+    bolzano_y = bolzano.Pomeriggio
+    valle_aosta_y = valle_aosta.Pomeriggio
+
+    bar1 = plt.bar(br1, trentino_y, color = blu, width = barWidth, edgecolor ='grey', label ="Trentino Alto Adige")
+    bar2 = plt.bar(br2, bolzano_y, color = arancione, width = barWidth, edgecolor ='grey', label ='Bolzano')
+    bar3 = plt.bar(br3, sardegna_y, color = verde, width = barWidth, edgecolor ='grey', label = "Sardegna")
+    bar4 = plt.bar(br4, valle_aosta_y, color = magenta, width = barWidth, edgecolor ='grey', label ='Valle Aosta')
+    bar5 = plt.bar(br5, veneto_y, color = grigio, width = barWidth, edgecolor ='grey', label ='Veneto')
+    bar6 = plt.bar(br6, emilia_y, color = viola, width = barWidth, edgecolor ='grey', label = "Emilia Romagna")
+        
+    for rect in bar1 + bar2 + bar3 + bar4 + bar5 + bar6:
+        height = rect.get_height()
+        plt.text(rect.get_x() + rect.get_width()/2.0, height, f'{height:.1f}%',ha='center',va='bottom')
+    
+    plt.ylabel('Utilizzo riscaldamento di pomeriggio', fontweight ='bold', fontsize = 15)
+    plt.grid(color='#95a5a6', linestyle='--', linewidth=1, axis='y', alpha=0.7)
+    plt.ylim((0,10))
+    plt.yticks((0,10,1,2,3,4,5,6,7,8,9,10))
+    ax.set_xticks([])
+
+    ax.legend(loc="upper right")
+    plt.savefig('.\datasetRegioni\consumoRiscaldamento\consumoPomeriggio.png', dpi=300)
+    ########################### Sera consumi ###########################
+    barWidth = 0.15
+    fig, ax = plt.subplots(figsize = (10, 7))
+    br1 = 0.3
+    br2 = br1 + 0.3
+    br3 = br2 + 0.3
+    br4 = br3 + 0.3
+    br5 = br4 + 0.3
+    br6 = br5 + 0.3
+
+    veneto_y = veneto.Sera
+    sardegna_y = sardegna.Sera
+    emilia_y = emilia.Sera
+    trentino_y = trentino.Sera
+    bolzano_y = bolzano.Sera
+    valle_aosta_y = valle_aosta.Sera
+
+    bar1 = plt.bar(br1, sardegna_y, color = blu, width = barWidth, edgecolor ='grey', label = "Sardegna")
+    bar2 = plt.bar(br2, bolzano_y, color = arancione, width = barWidth, edgecolor ='grey', label ='Bolzano')
+    bar3 = plt.bar(br3, trentino_y, color = verde, width = barWidth, edgecolor ='grey', label = "Trentino Alto Adige")
+    bar4 = plt.bar(br4, veneto_y, color = magenta, width = barWidth, edgecolor ='grey', label ='Veneto')
+    bar5 = plt.bar(br5, valle_aosta_y, color = grigio, width = barWidth, edgecolor ='grey', label ="Valle d'Aosta")
+    bar6 = plt.bar(br6, emilia_y, color = viola, width = barWidth, edgecolor ='grey', label = "Emilia Romagna")
+        
+    for rect in bar1 + bar2 + bar3 + bar4 + bar5 + bar6:
+        height = rect.get_height()
+        plt.text(rect.get_x() + rect.get_width()/2.0, height, f'{height:.1f}%',ha='center',va='bottom')
+    
+    plt.ylabel('Utilizzo riscaldamento di sera', fontweight ='bold', fontsize = 15)
+    plt.grid(color='#95a5a6', linestyle='--', linewidth=1, axis='y', alpha=0.7)
+    plt.ylim((0,10))
+    plt.yticks((0,10,1,2,3,4,5,6,7,8,9,10))
+    ax.set_xticks([])
+
+    ax.legend(loc="upper right")
+    plt.savefig('.\datasetRegioni\consumoRiscaldamento\consumoSera.png', dpi=300)
+datasetRiscaldamentoElementi()
