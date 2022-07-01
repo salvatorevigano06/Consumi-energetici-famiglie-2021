@@ -1,4 +1,4 @@
-import matplotlib.pyplot as plt, pylab, pandas as pd, matplotlib.ticker, csv, numpy as np, glob
+import matplotlib.pyplot as plt, pylab, pandas as pd, matplotlib.ticker, csv, numpy as np, json
 
 def datasetIniziale():
     data = pd.read_csv('datasetIniziale.csv', sep=',')
@@ -200,7 +200,7 @@ def datasetSpecificheAcquaCalda():
     data = data.replace(['..'],'0.0')
     data = data.replace(['....'], 'NULL')
     data = data.replace(['-'], 'NULL')
-    conversioneToCsv=data.to_csv('.\datasetLeggibile\datasetSpecificheAcquaCalda.csv', index=False, sep=';', decimal=',')
+    conversioneToCsv=data.to_csv('.\datasetLeggibile\datasetAcquaCalda_updated.csv', index=False, sep=';', decimal=',')
 def concatenaDatasetAcquaCalda():
     data1 = pd.read_csv('.\datasetLeggibile\datasetSpecificheAcquaCalda.csv', usecols = ['REGIONE', 'Metano', 'Energia Solare'], sep=';', decimal=',')
     data1.columns = ('Regione', 'Metano', 'Energia_Solare')
@@ -681,4 +681,16 @@ def datasetRiscaldamentoElementi():
 
     ax.legend(loc="upper right")
     plt.savefig('.\datasetRegioni\consumoRiscaldamento\consumoSera.png', dpi=300)
-datasetRiscaldamentoElementi()
+def csv_to_json(csvFilePath, jsonFilePath):
+    jsonArray = []
+    with open(csvFilePath, encoding='utf-8') as csvf: 
+        csvReader = csv.DictReader(csvf) 
+        for row in csvReader: 
+            jsonArray.append(row)
+    with open(jsonFilePath, 'w', encoding='utf-8') as jsonf: 
+        jsonString = json.dumps(jsonArray, indent=4)
+        jsonf.write(jsonString)
+
+csvFilePath = r'.\datasetToJSON\datasetRiscaldamento.csv'
+jsonFilePath = r'.\datasetToJSON\datasetRiscaldamento_iniziale.json'
+csv_to_json(csvFilePath, jsonFilePath)

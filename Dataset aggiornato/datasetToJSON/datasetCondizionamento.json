@@ -1,0 +1,50 @@
+[
+    {
+        "Regione": "Valle Aosta",
+        "Giornalmente": "22.0",
+        "Spesso": "13.8",
+        "Raramente": "20.8",
+        "Occasionalmente o Mai": "43.5",
+        "Dotazione_condizionamento": "70.0"
+    },
+    {
+        "Regione": "Trentino-Alto Adige",
+        "Giornalmente": "23.9",
+        "Spesso": "33.7",
+        "Raramente": "9.6",
+        "Occasionalmente o Mai": "32.8",
+        "Dotazione_condizionamento": "60.3"
+    },
+    {
+        "Regione": "Bolzano",
+        "Giornalmente": "22.9",
+        "Spesso": "36.8",
+        "Raramente": "12.1",
+        "Occasionalmente o Mai": "28.2",
+        "Dotazione_condizionamento": "59.9"
+    },
+    {
+        "Regione": "Veneto",
+        "Giornalmente": "32.7",
+        "Spesso": "38.9",
+        "Raramente": "11.1",
+        "Occasionalmente o Mai": "17.2",
+        "Dotazione_condizionamento": "4.7"
+    },
+    {
+        "Regione": "Emilia-Romagna",
+        "Giornalmente": "28.2",
+        "Spesso": "35.2",
+        "Raramente": "11.7",
+        "Occasionalmente o Mai": "24.9",
+        "Dotazione_condizionamento": "15.2"
+    },
+    {
+        "Regione": "Sardegna",
+        "Giornalmente": "32.0",
+        "Spesso": "31.9",
+        "Raramente": "12.0",
+        "Occasionalmente o Mai": "24.2",
+        "Dotazione_condizionamento": "14.4"
+    }
+]

@@ -1,0 +1,44 @@
+[
+    {
+        "Regione": "Valle Aosta",
+        "Mattina": "3.5",
+        "Pomeriggio": "4.35",
+        "Sera": "2.13",
+        "Dotazione_riscaldamento": "99.5"
+    },
+    {
+        "Regione": "Trentino-Alto Adige",
+        "Mattina": "3.32",
+        "Pomeriggio": "4.13",
+        "Sera": "1.41",
+        "Dotazione_riscaldamento": "99.7"
+    },
+    {
+        "Regione": "Bolzano",
+        "Mattina": "3.4",
+        "Pomeriggio": "4.17",
+        "Sera": "1.34",
+        "Dotazione_riscaldamento": "97.5"
+    },
+    {
+        "Regione": "Veneto",
+        "Mattina": "3.26",
+        "Pomeriggio": "4.44",
+        "Sera": "2.08",
+        "Dotazione_riscaldamento": "99.7"
+    },
+    {
+        "Regione": "Emilia-Romagna",
+        "Mattina": "3.49",
+        "Pomeriggio": "4.56",
+        "Sera": "2.18",
+        "Dotazione_riscaldamento": "99.5"
+    },
+    {
+        "Regione": "Sardegna",
+        "Mattina": "1.44",
+        "Pomeriggio": "4.22",
+        "Sera": "1.17",
+        "Dotazione_riscaldamento": "99.4"
+    }
+]

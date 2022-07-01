@@ -1,0 +1,124 @@
+[ {
+  "@id" : "http://www.semanticweb.org/salva/ontologies/2022/6/untitled-ontology-3",
+  "@type" : [ "http://www.w3.org/2002/07/owl#Ontology" ]
+}, {
+  "@id" : "http://www.semanticweb.org/salva/ontologies/2022/6/untitled-ontology-3#Acqua_Calda",
+  "@type" : [ "http://www.w3.org/2002/07/owl#Class" ],
+  "http://www.w3.org/2000/01/rdf-schema#comment" : [ {
+    "@value" : "Qui presente abbiamo tutte le informazioni estrapolate dal datasetConcatenatoAcquaCalda"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#subClassOf" : [ {
+    "@id" : "http://www.semanticweb.org/salva/ontologies/2022/6/untitled-ontology-3#Regione"
+  } ]
+}, {
+  "@id" : "http://www.semanticweb.org/salva/ontologies/2022/6/untitled-ontology-3#Condizionamento",
+  "@type" : [ "http://www.w3.org/2002/07/owl#Class" ],
+  "http://www.w3.org/2000/01/rdf-schema#subClassOf" : [ {
+    "@id" : "http://www.semanticweb.org/salva/ontologies/2022/6/untitled-ontology-3#Regione"
+  } ]
+}, {
+  "@id" : "http://www.semanticweb.org/salva/ontologies/2022/6/untitled-ontology-3#Energia_Solare",
+  "@type" : [ "http://www.w3.org/2002/07/owl#Class" ],
+  "http://www.w3.org/2000/01/rdf-schema#comment" : [ {
+    "@value" : "Per energia solare si intende energia sprigionata dal Sole e trasmessa sulla Terra sotto forma di radiazione elettromagnetica (luce e calore)."
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#subClassOf" : [ {
+    "@id" : "http://www.semanticweb.org/salva/ontologies/2022/6/untitled-ontology-3#Acqua_Calda"
+  } ]
+}, {
+  "@id" : "http://www.semanticweb.org/salva/ontologies/2022/6/untitled-ontology-3#Giornaliero",
+  "@type" : [ "http://www.w3.org/2002/07/owl#Class" ],
+  "http://www.w3.org/2000/01/rdf-schema#comment" : [ {
+    "@value" : "Evento che avviene tutti i giorni"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#subClassOf" : [ {
+    "@id" : "http://www.semanticweb.org/salva/ontologies/2022/6/untitled-ontology-3#Utilizzo"
+  } ]
+}, {
+  "@id" : "http://www.semanticweb.org/salva/ontologies/2022/6/untitled-ontology-3#Mattina",
+  "@type" : [ "http://www.w3.org/2002/07/owl#Class" ],
+  "http://www.w3.org/2000/01/rdf-schema#comment" : [ {
+    "@value" : "La parte del giorno che va dall’alba a mezzogiorno"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#subClassOf" : [ {
+    "@id" : "http://www.semanticweb.org/salva/ontologies/2022/6/untitled-ontology-3#Periodo"
+  } ]
+}, {
+  "@id" : "http://www.semanticweb.org/salva/ontologies/2022/6/untitled-ontology-3#Metano",
+  "@type" : [ "http://www.w3.org/2002/07/owl#Class" ],
+  "http://www.w3.org/2000/01/rdf-schema#comment" : [ {
+    "@value" : "Composto chimico organico, capostipite degli idrocarburi saturi, la cui molecola è formata da un atomo di carbonio e quattro di idrogeno; è un gas incolore, inodore, non tossico, presente in molti gas naturali, ottenibile dai prodotti di distillazione di combustibili fossili, per decomposizione di sostanze organiche e anche per sintesi; viene usato solo, o in miscela con altri gas, come combustibile per usi sia domestici sia industriali, come materia prima per la produzione di idrogeno o di miscele di idrogeno e ossido di carbonio e di altri importanti composti (cloroformio, formaldeide, ecc.), e per la produzione di energia elettrica nelle centrali termoelettriche"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#subClassOf" : [ {
+    "@id" : "http://www.semanticweb.org/salva/ontologies/2022/6/untitled-ontology-3#Acqua_Calda"
+  } ]
+}, {
+  "@id" : "http://www.semanticweb.org/salva/ontologies/2022/6/untitled-ontology-3#Occasionalmente_o_mai",
+  "@type" : [ "http://www.w3.org/2002/07/owl#Class" ],
+  "http://www.w3.org/2000/01/rdf-schema#comment" : [ {
+    "@value" : "Evento che avviene in casi particolari o mai"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#subClassOf" : [ {
+    "@id" : "http://www.semanticweb.org/salva/ontologies/2022/6/untitled-ontology-3#Utilizzo"
+  } ]
+}, {
+  "@id" : "http://www.semanticweb.org/salva/ontologies/2022/6/untitled-ontology-3#Periodo",
+  "@type" : [ "http://www.w3.org/2002/07/owl#Class" ],
+  "http://www.w3.org/2000/01/rdf-schema#subClassOf" : [ {
+    "@id" : "http://www.semanticweb.org/salva/ontologies/2022/6/untitled-ontology-3#Riscaldamento"
+  } ]
+}, {
+  "@id" : "http://www.semanticweb.org/salva/ontologies/2022/6/untitled-ontology-3#Pomeriggio",
+  "@type" : [ "http://www.w3.org/2002/07/owl#Class" ],
+  "http://www.w3.org/2000/01/rdf-schema#comment" : [ {
+    "@value" : "La parte del giorno che va da mezzogiorno fino al tramonto"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#subClassOf" : [ {
+    "@id" : "http://www.semanticweb.org/salva/ontologies/2022/6/untitled-ontology-3#Periodo"
+  } ]
+}, {
+  "@id" : "http://www.semanticweb.org/salva/ontologies/2022/6/untitled-ontology-3#Raramente",
+  "@type" : [ "http://www.w3.org/2002/07/owl#Class" ],
+  "http://www.w3.org/2000/01/rdf-schema#comment" : [ {
+    "@value" : "Evento che avviene almeno una volta al mese"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#subClassOf" : [ {
+    "@id" : "http://www.semanticweb.org/salva/ontologies/2022/6/untitled-ontology-3#Utilizzo"
+  } ]
+}, {
+  "@id" : "http://www.semanticweb.org/salva/ontologies/2022/6/untitled-ontology-3#Regione",
+  "@type" : [ "http://www.w3.org/2002/07/owl#Class" ],
+  "http://www.w3.org/2000/01/rdf-schema#comment" : [ {
+    "@value" : "La regione è una porzione della superficie terrestre individuata in base a certe sue caratteristiche e che si estende fin dove tali caratteristiche sono presenti"
+  } ]
+}, {
+  "@id" : "http://www.semanticweb.org/salva/ontologies/2022/6/untitled-ontology-3#Riscaldamento",
+  "@type" : [ "http://www.w3.org/2002/07/owl#Class" ],
+  "http://www.w3.org/2000/01/rdf-schema#subClassOf" : [ {
+    "@id" : "http://www.semanticweb.org/salva/ontologies/2022/6/untitled-ontology-3#Regione"
+  } ]
+}, {
+  "@id" : "http://www.semanticweb.org/salva/ontologies/2022/6/untitled-ontology-3#Sera",
+  "@type" : [ "http://www.w3.org/2002/07/owl#Class" ],
+  "http://www.w3.org/2000/01/rdf-schema#comment" : [ {
+    "@value" : "La parte del giorno che va dal tramonto fino all'alba"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#subClassOf" : [ {
+    "@id" : "http://www.semanticweb.org/salva/ontologies/2022/6/untitled-ontology-3#Periodo"
+  } ]
+}, {
+  "@id" : "http://www.semanticweb.org/salva/ontologies/2022/6/untitled-ontology-3#Spesso",
+  "@type" : [ "http://www.w3.org/2002/07/owl#Class" ],
+  "http://www.w3.org/2000/01/rdf-schema#comment" : [ {
+    "@value" : "Evento che avviene almeno una volta a settimana"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#subClassOf" : [ {
+    "@id" : "http://www.semanticweb.org/salva/ontologies/2022/6/untitled-ontology-3#Utilizzo"
+  } ]
+}, {
+  "@id" : "http://www.semanticweb.org/salva/ontologies/2022/6/untitled-ontology-3#Utilizzo",
+  "@type" : [ "http://www.w3.org/2002/07/owl#Class" ],
+  "http://www.w3.org/2000/01/rdf-schema#subClassOf" : [ {
+    "@id" : "http://www.semanticweb.org/salva/ontologies/2022/6/untitled-ontology-3#Condizionamento"
+  } ]
+} ]
