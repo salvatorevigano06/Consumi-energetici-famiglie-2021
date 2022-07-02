@@ -1,0 +1,58 @@
+[ {
+  "@id" : "http://dbpedia.org/page/",
+  "@type" : [ "http://www.w3.org/2002/07/owl#Ontology" ]
+}, {
+  "@id" : "http://dbpedia.org/page/Aosta_Valley",
+  "@type" : [ "http://www.w3.org/2002/07/owl#Class" ],
+  "http://www.w3.org/2000/01/rdf-schema#subClassOf" : [ {
+    "@id" : "http://dbpedia.org/page/Regions_of_Italy"
+  } ]
+}, {
+  "@id" : "http://dbpedia.org/page/Bolzano",
+  "@type" : [ "http://www.w3.org/2002/07/owl#Class" ],
+  "http://www.w3.org/2000/01/rdf-schema#subClassOf" : [ {
+    "@id" : "http://dbpedia.org/page/Regions_of_Italy"
+  } ]
+}, {
+  "@id" : "http://dbpedia.org/page/Emilia-Romagna",
+  "@type" : [ "http://www.w3.org/2002/07/owl#Class" ],
+  "http://www.w3.org/2000/01/rdf-schema#subClassOf" : [ {
+    "@id" : "http://dbpedia.org/page/Regions_of_Italy"
+  } ]
+}, {
+  "@id" : "http://dbpedia.org/page/Methane",
+  "@type" : [ "http://www.w3.org/2002/07/owl#Class" ],
+  "http://www.w3.org/2000/01/rdf-schema#subClassOf" : [ {
+    "@id" : "http://dbpedia.org/page/Renewable_resource"
+  } ]
+}, {
+  "@id" : "http://dbpedia.org/page/Regions_of_Italy",
+  "@type" : [ "http://www.w3.org/2002/07/owl#Class" ]
+}, {
+  "@id" : "http://dbpedia.org/page/Renewable_resource",
+  "@type" : [ "http://www.w3.org/2002/07/owl#Class" ]
+}, {
+  "@id" : "http://dbpedia.org/page/Sardegna",
+  "@type" : [ "http://www.w3.org/2002/07/owl#Class" ],
+  "http://www.w3.org/2000/01/rdf-schema#subClassOf" : [ {
+    "@id" : "http://dbpedia.org/page/Regions_of_Italy"
+  } ]
+}, {
+  "@id" : "http://dbpedia.org/page/Solar_power",
+  "@type" : [ "http://www.w3.org/2002/07/owl#Class" ],
+  "http://www.w3.org/2000/01/rdf-schema#subClassOf" : [ {
+    "@id" : "http://dbpedia.org/page/Renewable_resource"
+  } ]
+}, {
+  "@id" : "http://dbpedia.org/page/Trentino-Alto-Adige",
+  "@type" : [ "http://www.w3.org/2002/07/owl#Class" ],
+  "http://www.w3.org/2000/01/rdf-schema#subClassOf" : [ {
+    "@id" : "http://dbpedia.org/page/Regions_of_Italy"
+  } ]
+}, {
+  "@id" : "http://dbpedia.org/page/Veneto",
+  "@type" : [ "http://www.w3.org/2002/07/owl#Class" ],
+  "http://www.w3.org/2000/01/rdf-schema#subClassOf" : [ {
+    "@id" : "http://dbpedia.org/page/Regions_of_Italy"
+  } ]
+} ]

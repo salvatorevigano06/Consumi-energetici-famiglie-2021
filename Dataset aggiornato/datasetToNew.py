@@ -195,6 +195,11 @@ def valoreMinimo():
     ax.legend(loc="upper right")
 
     plt.savefig('.\minValori\dotazioneCondizionamento.png', dpi=300)
+def concatena():
+    data1 = pd.read_csv('.\datasetRegioni\maxValue.csv', sep=';')
+    data2 = pd.read_csv('.\datasetRegioni\minValue.csv', sep=';')
+    concatenazione = pd.concat([data1, data2], axis=0)
+    concatenazione.to_csv('.\datasetLeggibile\RegioniInteressate.csv', sep=';', index=0, decimal=',')
 def datasetSpecificheAcquaCalda():
     data = pd.read_csv('datasetSpecifiche.csv', sep=',')
     data = data.replace(['..'],'0.0')
@@ -210,11 +215,6 @@ def concatenaDatasetAcquaCalda():
     data3 = pd.read_csv('.\datasetLeggibile\datasetAcquaCalda_regioniInteressate.csv', sep=';', decimal=',')
     a=pd.concat([data3, data2], axis=1)
     a.to_csv('.\datasetLeggibile\datasetConcatenatoAcquaCalda.csv', sep=';', index=0, decimal=',')
-def concatena():
-    data1 = pd.read_csv('.\datasetRegioni\maxValue.csv', sep=';')
-    data2 = pd.read_csv('.\datasetRegioni\minValue.csv', sep=';')
-    concatenazione = pd.concat([data1, data2], axis=0)
-    concatenazione.to_csv('.\datasetLeggibile\RegioniInteressate.csv', sep=';', index=0, decimal=',')
 def datasetAcquaCaldaElementi():
     df = pd.read_csv('.\datasetLeggibile\datasetConcatenatoAcquaCalda.csv', decimal=',', sep=';',index_col=0)
     maxValueEnergia = df[['Energia_Solare']].max(axis=1).sort_values(ascending=False).reset_index(name='Energia Solare max')
@@ -681,7 +681,7 @@ def datasetRiscaldamentoElementi():
 
     ax.legend(loc="upper right")
     plt.savefig('.\datasetRegioni\consumoRiscaldamento\consumoSera.png', dpi=300)
-def csv_to_json(csvFilePath, jsonFilePath):
+def conversioneToJSON(csvFilePath, jsonFilePath):
     jsonArray = []
     with open(csvFilePath, encoding='utf-8') as csvf: 
         csvReader = csv.DictReader(csvf) 
@@ -693,4 +693,4 @@ def csv_to_json(csvFilePath, jsonFilePath):
 
 csvFilePath = r'.\datasetToJSON\datasetRiscaldamento.csv'
 jsonFilePath = r'.\datasetToJSON\datasetRiscaldamento_iniziale.json'
-csv_to_json(csvFilePath, jsonFilePath)
+conversioneToJSON(csvFilePath, jsonFilePath)
