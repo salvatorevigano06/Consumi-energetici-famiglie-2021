@@ -96,5 +96,3 @@ Per creare queste ontologie personalizzate abbiamo utilizzato il software _Prot�
 # Conversione CSV in JSON
 
 Concludendo il nostro progetto, l&#39;ultimo passaggio necessario per far sì che avessimo tutto a portata di mano era di convertire tutti i .csv utilizzati in .json. Per farlo, abbiamo creato una funzione chiamata _conversioneToJSON()_ dove, attraverso le librerie _csv_ e _json_, abbiamo utilizzato un csvReader (in particolare _csv.DictReader()_) e per ogni riga ottenuta verrà inserita ogni coppia chiave valore nel json con il metodo _append_.
-
-1
