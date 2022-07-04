@@ -1,0 +1,38 @@
+[
+    {
+        "Regione": "Valle Aosta",
+        "Metano": "32.0",
+        "Energia_Solare": "2.9",
+        "Dotazione_acqua_calda": "99.8"
+    },
+    {
+        "Regione": "Trentino-Alto Adige",
+        "Metano": "54.7",
+        "Energia_Solare": "4.9",
+        "Dotazione_acqua_calda": "99.9"
+    },
+    {
+        "Regione": "Bolzano",
+        "Metano": "44.3",
+        "Energia_Solare": "5.1",
+        "Dotazione_acqua_calda": "99.7"
+    },
+    {
+        "Regione": "Veneto",
+        "Metano": "78.5",
+        "Energia_Solare": "1.3",
+        "Dotazione_acqua_calda": "99.6"
+    },
+    {
+        "Regione": "Emilia-Romagna",
+        "Metano": "82.8",
+        "Energia_Solare": "1.0",
+        "Dotazione_acqua_calda": "99.6"
+    },
+    {
+        "Regione": "Sardegna",
+        "Metano": "7.6",
+        "Energia_Solare": "1.5",
+        "Dotazione_acqua_calda": "99.3"
+    }
+]

@@ -5,7 +5,7 @@
         "Dotazione acqua calda": "99.8",
         "Dotazione condizionamento": "28.8",
         "Riscaldamento e acqua calda coincidenti": "65.7",
-        "Riscaldamento e condizionamento coincidenti": "17",
+        "Riscaldamento e condizionamento coincidenti": "17.0",
         "Piu tipi di dotazioni per il riscaldamento": "33.6",
         "Piu tipi di dotazioni per acqua calda": "4.9",
         "Piu tipi di dotazioni per il condizionamento": "4.9"
@@ -19,13 +19,13 @@
         "Riscaldamento e condizionamento coincidenti": "2.5",
         "Piu tipi di dotazioni per il riscaldamento": "35.9",
         "Piu tipi di dotazioni per acqua calda": "6.6",
-        "Piu tipi di dotazioni per il condizionamento": "0"
+        "Piu tipi di dotazioni per il condizionamento": "0.0"
     },
     {
         "Regione": "Liguria",
         "Dotazione riscaldamento": "98.8",
         "Dotazione acqua calda": "99.7",
-        "Dotazione condizionamento": "30",
+        "Dotazione condizionamento": "30.0",
         "Riscaldamento e acqua calda coincidenti": "72.8",
         "Riscaldamento e condizionamento coincidenti": "18.8",
         "Piu tipi di dotazioni per il riscaldamento": "31.8",
@@ -62,7 +62,7 @@
         "Riscaldamento e acqua calda coincidenti": "82.2",
         "Riscaldamento e condizionamento coincidenti": "6.9",
         "Piu tipi di dotazioni per il riscaldamento": "37.6",
-        "Piu tipi di dotazioni per acqua calda": "8",
+        "Piu tipi di dotazioni per acqua calda": "8.0",
         "Piu tipi di dotazioni per il condizionamento": "2.1"
     },
     {
@@ -72,7 +72,7 @@
         "Dotazione condizionamento": "15.9",
         "Riscaldamento e acqua calda coincidenti": "85.9",
         "Riscaldamento e condizionamento coincidenti": "8.3",
-        "Piu tipi di dotazioni per il riscaldamento": "42",
+        "Piu tipi di dotazioni per il riscaldamento": "42.0",
         "Piu tipi di dotazioni per acqua calda": "5.3",
         "Piu tipi di dotazioni per il condizionamento": "2.1"
     },
@@ -80,7 +80,7 @@
         "Regione": "Veneto",
         "Dotazione riscaldamento": "99.5",
         "Dotazione acqua calda": "99.8",
-        "Dotazione condizionamento": "70",
+        "Dotazione condizionamento": "70.0",
         "Riscaldamento e acqua calda coincidenti": "86.5",
         "Riscaldamento e condizionamento coincidenti": "39.7",
         "Piu tipi di dotazioni per il riscaldamento": "50.9",
@@ -115,7 +115,7 @@
         "Dotazione acqua calda": "99.9",
         "Dotazione condizionamento": "40.2",
         "Riscaldamento e acqua calda coincidenti": "82.8",
-        "Riscaldamento e condizionamento coincidenti": "25",
+        "Riscaldamento e condizionamento coincidenti": "25.0",
         "Piu tipi di dotazioni per il riscaldamento": "42.6",
         "Piu tipi di dotazioni per acqua calda": "3.8",
         "Piu tipi di dotazioni per il condizionamento": "6.6"
@@ -166,7 +166,7 @@
     },
     {
         "Regione": "Molise",
-        "Dotazione riscaldamento": "99",
+        "Dotazione riscaldamento": "99.0",
         "Dotazione acqua calda": "99.5",
         "Dotazione condizionamento": "20.1",
         "Riscaldamento e acqua calda coincidenti": "80.5",
@@ -178,7 +178,7 @@
     {
         "Regione": "Campania",
         "Dotazione riscaldamento": "95.7",
-        "Dotazione acqua calda": "98",
+        "Dotazione acqua calda": "98.0",
         "Dotazione condizionamento": "46.1",
         "Riscaldamento e acqua calda coincidenti": "60.2",
         "Riscaldamento e condizionamento coincidenti": "36.9",
@@ -202,7 +202,7 @@
         "Dotazione riscaldamento": "99.5",
         "Dotazione acqua calda": "99.6",
         "Dotazione condizionamento": "24.6",
-        "Riscaldamento e acqua calda coincidenti": "78",
+        "Riscaldamento e acqua calda coincidenti": "78.0",
         "Riscaldamento e condizionamento coincidenti": "17.4",
         "Piu tipi di dotazioni per il riscaldamento": "36.3",
         "Piu tipi di dotazioni per acqua calda": "6.3",
@@ -211,13 +211,13 @@
     {
         "Regione": "Calabria",
         "Dotazione riscaldamento": "98.4",
-        "Dotazione acqua calda": "99",
+        "Dotazione acqua calda": "99.0",
         "Dotazione condizionamento": "43.9",
         "Riscaldamento e acqua calda coincidenti": "56.2",
         "Riscaldamento e condizionamento coincidenti": "35.8",
         "Piu tipi di dotazioni per il riscaldamento": "47.7",
         "Piu tipi di dotazioni per acqua calda": "8.3",
-        "Piu tipi di dotazioni per il condizionamento": "7"
+        "Piu tipi di dotazioni per il condizionamento": "7.0"
     },
     {
         "Regione": "Sicilia",

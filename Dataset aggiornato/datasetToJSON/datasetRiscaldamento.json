@@ -1,44 +1,134 @@
 [
     {
+        "Regione": "Piemonte",
+        "Mattina": "3.492",
+        "Pomeriggio": "4.366",
+        "Sera": "1.432"
+    },
+    {
         "Regione": "Valle Aosta",
-        "Mattina": "3.5",
-        "Pomeriggio": "4.35",
-        "Sera": "2.13",
-        "Dotazione_riscaldamento": "99.5"
+        "Mattina": "3.504",
+        "Pomeriggio": "4.354",
+        "Sera": "2.132"
+    },
+    {
+        "Regione": "Liguria",
+        "Mattina": "2.51",
+        "Pomeriggio": "4.09",
+        "Sera": "1.27"
+    },
+    {
+        "Regione": "Lombardia",
+        "Mattina": "3.402",
+        "Pomeriggio": "4.407",
+        "Sera": "1.45"
     },
     {
         "Regione": "Trentino-Alto Adige",
-        "Mattina": "3.32",
-        "Pomeriggio": "4.13",
-        "Sera": "1.41",
-        "Dotazione_riscaldamento": "99.7"
+        "Mattina": "3.318",
+        "Pomeriggio": "4.132",
+        "Sera": "1.408"
     },
     {
         "Regione": "Bolzano",
-        "Mattina": "3.4",
-        "Pomeriggio": "4.17",
-        "Sera": "1.34",
-        "Dotazione_riscaldamento": "97.5"
+        "Mattina": "3.402",
+        "Pomeriggio": "4.168",
+        "Sera": "1.336"
+    },
+    {
+        "Regione": "Trento",
+        "Mattina": "3.246",
+        "Pomeriggio": "4.096",
+        "Sera": "1.468"
     },
     {
         "Regione": "Veneto",
-        "Mattina": "3.26",
-        "Pomeriggio": "4.44",
-        "Sera": "2.08",
-        "Dotazione_riscaldamento": "99.7"
+        "Mattina": "3.264",
+        "Pomeriggio": "4.438",
+        "Sera": "2.078"
+    },
+    {
+        "Regione": "Friuli-Venezia Giulia",
+        "Mattina": "3.042",
+        "Pomeriggio": "4.306",
+        "Sera": "1.432"
     },
     {
         "Regione": "Emilia-Romagna",
-        "Mattina": "3.49",
-        "Pomeriggio": "4.56",
-        "Sera": "2.18",
-        "Dotazione_riscaldamento": "99.5"
+        "Mattina": "3.492",
+        "Pomeriggio": "4.558",
+        "Sera": "2.179"
+    },
+    {
+        "Regione": "Toscana",
+        "Mattina": "2.191",
+        "Pomeriggio": "3.474",
+        "Sera": "1.414"
+    },
+    {
+        "Regione": "Umbria",
+        "Mattina": "2.191",
+        "Pomeriggio": "4.024",
+        "Sera": "1.3"
+    },
+    {
+        "Regione": "Marche",
+        "Mattina": "2.203",
+        "Pomeriggio": "4.012",
+        "Sera": "1.318"
+    },
+    {
+        "Regione": "Lazio",
+        "Mattina": "1.318",
+        "Pomeriggio": "3.582",
+        "Sera": "1.138"
+    },
+    {
+        "Regione": "Abruzzo",
+        "Mattina": "2.366",
+        "Pomeriggio": "4.096",
+        "Sera": "1.462"
+    },
+    {
+        "Regione": "Molise",
+        "Mattina": "3.012",
+        "Pomeriggio": "4.276",
+        "Sera": "1.432"
+    },
+    {
+        "Regione": "Campania",
+        "Mattina": "1.246",
+        "Pomeriggio": "3.3",
+        "Sera": "1.228"
+    },
+    {
+        "Regione": "Puglia",
+        "Mattina": "1.18",
+        "Pomeriggio": "3.078",
+        "Sera": "1.144"
+    },
+    {
+        "Regione": "Basilicata",
+        "Mattina": "2.414",
+        "Pomeriggio": "4.144",
+        "Sera": "1.3"
+    },
+    {
+        "Regione": "Calabria",
+        "Mattina": "1.516",
+        "Pomeriggio": "4.192",
+        "Sera": "1.222"
+    },
+    {
+        "Regione": "Sicilia",
+        "Mattina": "1.077",
+        "Pomeriggio": "3.12",
+        "Sera": "1.186"
     },
     {
         "Regione": "Sardegna",
-        "Mattina": "1.44",
-        "Pomeriggio": "4.22",
-        "Sera": "1.17",
-        "Dotazione_riscaldamento": "99.4"
+        "Mattina": "1.438",
+        "Pomeriggio": "4.216",
+        "Sera": "1.174"
     }
 ]

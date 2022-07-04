@@ -1,15 +1,66 @@
-import matplotlib.pyplot as plt, pylab, pandas as pd, matplotlib.ticker, csv, numpy as np, json
-
+import os
+import matplotlib.pyplot as plt, pandas as pd, csv, json
 def datasetIniziale():
-    data = pd.read_csv('datasetIniziale.csv', sep=',')
-    data.columns=["Regione", "Dotazione riscaldamento", "Dotazione acqua calda", "Dotazione condizionamento", "Riscaldamento e acqua calda coincidenti", "Riscaldamento e condizionamento coincidenti", "Piu tipi di dotazioni per il riscaldamento", "Piu tipi di dotazioni per acqua calda", "Piu tipi di dotazioni per il condizionamento"]
-    data = data.replace(['..'],'0.0')
-    data = data.replace(['....'], 'NULL')
-    data = data.replace(['-'], 'NULL')
-    data = data.astype({"Regione": str, "Dotazione riscaldamento": float, "Dotazione acqua calda": float, "Dotazione condizionamento": float, "Riscaldamento e acqua calda coincidenti": float, "Riscaldamento e condizionamento coincidenti": float, "Piu tipi di dotazioni per il riscaldamento": float, "Piu tipi di dotazioni per acqua calda": float, "Piu tipi di dotazioni per il condizionamento": float})
-    conversioneToCsv=data.to_csv('.\datasetLeggibile\datasetIniziale_updated.csv', columns=('Regione', 'Dotazione riscaldamento', 'Dotazione acqua calda', 'Dotazione condizionamento', 'Riscaldamento e acqua calda coincidenti', 'Riscaldamento e condizionamento coincidenti', 'Piu tipi di dotazioni per il riscaldamento', 'Piu tipi di dotazioni per acqua calda', 'Piu tipi di dotazioni per il condizionamento'), index=False, sep=';', decimal=',')
+    df = pd.read_excel('..\DatasetPartenza\Tavole_Appendice.xlsx', sheet_name=2, header=2)
+    df = df.drop(df.columns[[4, 7]], axis=1)
+    df = df.replace("Valle d’Aosta/Vallée d’Aoste", "Valle Aosta")
+    df = df.replace("Trentino-Alto Adige/Südtirol", "Trentino-Alto Adige")
+    df = df.replace("Bolzano-Bozen", "Bolzano")
+    df = df.replace("..", "0.0")
+    df = df.iloc[1:]
+    df = df.drop(df.tail(9).index)
+    df.to_csv('..\Dataset aggiornato\datasetIniziale_1.csv', sep=';',index=0)
+    df2 = pd.read_csv('..\Dataset aggiornato\datasetIniziale_1.csv', usecols = ['REGIONE', 'Dotazioni', 'Unnamed: 2', 'Unnamed: 3', 'Coincidenza di dotazioni', 'Unnamed: 6', 'Presenza di dotazioni ausiliarie', 'Unnamed: 9', 'Unnamed: 10'], sep=';')
+    df2.columns = ["Regione", "Famiglie dotate di riscaldamento della abitazione", "Famiglie dotate di acqua calda", "Famiglie dotate di condizionamento", "Famiglie con dotazioni per riscaldamento e acqua calda coincidenti", "Famiglie con dotazioni per riscaldamento e condizionamento coincidenti", "Famiglie con piu' tipi di dotazioni per il riscaldamento", "Famiglie con piu' tipi di dotazioni per acqua calda", "Famiglie con piu' tipi di dotazioni per il condizionamento"]
+    df2.to_csv('..\Dataset aggiornato\datasetIniziale.csv', sep=',', decimal='.', index=0)
+    df3 = pd.read_csv('..\Dataset aggiornato\datasetIniziale.csv', sep=',')
+    df3.columns=["Regione", "Dotazione riscaldamento", "Dotazione acqua calda", "Dotazione condizionamento", "Riscaldamento e acqua calda coincidenti", "Riscaldamento e condizionamento coincidenti", "Piu tipi di dotazioni per il riscaldamento", "Piu tipi di dotazioni per acqua calda", "Piu tipi di dotazioni per il condizionamento"]
+    df3.to_csv('..\Dataset aggiornato\datasetLeggibile\datasetIniziale_updated.csv', index=False, sep=';', decimal=',')
+    df3.to_csv('..\Dataset aggiornato\datasetIniziale.csv', index=False, sep=',')
+    os.remove("..\Dataset aggiornato\datasetIniziale_1.csv")
+def datasetAcquaCalda():
+    df = pd.read_excel('..\DatasetPartenza\Tavole_Appendice.xlsx', sheet_name=13, header=2)
+    df = df.replace("Valle d’Aosta/Vallée d’Aoste", "Valle Aosta")
+    df = df.replace("Trentino-Alto Adige/Südtirol", "Trentino-Alto Adige")
+    df = df.replace("Bolzano-Bozen", "Bolzano")
+    df = df.replace("..", "0.0")
+    df = df.drop(0)
+    df = df.drop(df.columns[[7]], axis=1)
+    df = df.drop(df.tail(10).index)
+    df.to_csv('..\Dataset aggiornato\datasetAcquaCalda_1.csv', sep=';', index=0)
+    df2 = pd.read_csv('..\Dataset aggiornato\datasetAcquaCalda_1.csv', sep=';')
+    df2.columns=['Regione', 'Metano', 'Energia elettrica', 'GPL', 'Biomasse', 'Gasolio', 'Energia Solare']
+    df2.to_csv('..\Dataset aggiornato\datasetAcquaCalda.csv', sep=',', decimal='.', index = False)
+    df3 = pd.read_csv('..\Dataset aggiornato\datasetAcquaCalda.csv', sep=',')
+    df3.to_csv('..\Dataset aggiornato\datasetLeggibile\datasetAcquaCalda_updated.csv', sep=';', decimal=',', index=False)
+    df3.to_csv('..\Dataset aggiornato\datasetAcquaCalda.csv', sep=',', index=False)
+    os.remove("..\Dataset aggiornato\datasetAcquaCalda_1.csv")
+def datasetCondizionamento():
+    df = pd.read_excel('..\DatasetPartenza\Tavole_Appendice.xlsx', sheet_name=15, header=2)
+    df = df.drop(0)
+    df = df.drop(df.columns[[5]], axis=1)
+    df.columns = ['Regione', 'Giornalmente', 'Spesso', 'Raramente', 'Occasionalmente o Mai']
+    df = df.replace("Valle d’Aosta/Vallée d’Aoste", "Valle Aosta")
+    df = df.replace("Trentino-Alto Adige/Südtirol", "Trentino-Alto Adige")
+    df = df.replace("Bolzano-Bozen", "Bolzano")
+    df = df.replace("..", "0.0")
+    df = df.drop(df.tail(9).index)
+    df.to_csv('..\Dataset aggiornato\datasetCondizionamento.csv', sep = ',', index = False)
+    df.to_csv('..\Dataset aggiornato\datasetLeggibile\datasetCondizionamento_updated.csv', sep = ';', decimal=',', index = False)
+def datasetRiscaldamento():
+    df = pd.read_excel('..\DatasetPartenza\Tavole_Appendice.xlsx', sheet_name=8, header=2, decimal=',')
+    df = df.drop(0)
+    df = df.drop(df.columns[4], axis=1)
+    df = df.replace("Valle d’Aosta/Vallée d’Aoste", "Valle Aosta")
+    df = df.replace("Trentino-Alto Adige/Südtirol", "Trentino-Alto Adige")
+    df = df.replace("Bolzano-Bozen", "Bolzano")
+    df = df.replace("..", "0.0")
+    df = df.drop(df.tail(10).index)
+    df.columns = ['Regione', 'Mattina', 'Pomeriggio', 'Sera']
+    df.to_csv('..\Dataset aggiornato\datasetLeggibile\datasetRiscaldamento_updated.csv', sep=';', decimal=',', index=0)
+    df.to_csv('..\Dataset aggiornato\datasetRiscaldamento.csv', sep=',', index=0)
 def valoreMassimo():
-    df = pd.read_csv('.\datasetLeggibile\datasetIniziale_updated.csv', usecols=['Regione', 'Dotazione riscaldamento', 'Dotazione acqua calda',	'Dotazione condizionamento'], sep=';', decimal=',')
+    df = pd.read_csv('..\Dataset aggiornato\datasetIniziale.csv', usecols=['Regione', 'Dotazione riscaldamento', 'Dotazione acqua calda', 'Dotazione condizionamento'], sep=',')
     df.columns=["Regione", "Dotazione_riscaldamento", "Dotazione_acqua_calda", "Dotazione_condizionamento"]
     media = df[['Dotazione_riscaldamento', 'Dotazione_acqua_calda', 'Dotazione_condizionamento']].mean(axis=1).nlargest(3, keep='all').sort_values(ascending=False).reset_index(name='Media valori')
     print(media)
@@ -18,7 +69,7 @@ def valoreMassimo():
     sardegna = df[(df['Regione']=='Sardegna')]
 
     regioni = df[(df['Regione']=='Veneto') | (df['Regione']=='Emilia-Romagna') | (df['Regione'] == 'Sardegna')]
-    regioni.to_csv('.\datasetRegioni\maxValue.csv', sep=';', decimal=',', index=False)
+    regioni.to_csv('..\Dataset aggiornato\datasetRegioni\maxValori.csv', sep=';', decimal=',', index=False)
     ########################### Dotazione Riscaldamento ###########################
     barWidth = 0.15
     fig, ax = plt.subplots(figsize = (10, 7))
@@ -46,7 +97,7 @@ def valoreMassimo():
     ax.set_xticks([])
 
     ax.legend(loc="lower right")
-    plt.savefig('.\maxValori\dotazioneRiscaldamento.png', dpi=300)
+    plt.savefig('..\Dataset aggiornato\maxValori\dotazioneRiscaldamento.png', dpi=300)
     ########################### Dotazione Acqua Calda ###########################
     barWidth = 0.15
     fig, ax = plt.subplots(figsize = (10, 7))
@@ -73,7 +124,7 @@ def valoreMassimo():
     ax.set_xticks([])
 
     ax.legend(loc="lower right")
-    plt.savefig('.\maxValori\dotazioneAcquaCalda.png', dpi=300)
+    plt.savefig('..\Dataset aggiornato\maxValori\dotazioneAcquaCalda.png', dpi=300)
     ########################### Dotazione Condizionamento ###########################
     barWidth = 0.15
     fig, ax = plt.subplots(figsize = (10, 7))
@@ -101,9 +152,9 @@ def valoreMassimo():
 
     ax.legend(loc="lower right")
 
-    plt.savefig('.\maxValori\dotazioneCondizionamento.png', dpi=300)
+    plt.savefig('..\Dataset aggiornato\maxValori\dotazioneCondizionamento.png', dpi=300)
 def valoreMinimo():
-    df = pd.read_csv('.\datasetLeggibile\datasetIniziale_updated.csv', usecols=['Regione', 'Dotazione riscaldamento', 'Dotazione acqua calda',	'Dotazione condizionamento'], sep=';', decimal=',')
+    df = pd.read_csv('..\Dataset aggiornato\datasetIniziale.csv', usecols=['Regione', 'Dotazione riscaldamento', 'Dotazione acqua calda', 'Dotazione condizionamento'], sep=',')
     df.columns = ["Regione", "Dotazione_riscaldamento", "Dotazione_acqua_calda", "Dotazione_condizionamento"]
     media = df[['Dotazione_riscaldamento', 'Dotazione_acqua_calda', 'Dotazione_condizionamento']].mean(axis=1).nsmallest(3, keep='all').sort_values(ascending=False).reset_index(name='Media valori')
     print(media)
@@ -111,7 +162,7 @@ def valoreMinimo():
     bolzano = df[(df['Regione']=='Bolzano')]
     trentino = df[(df['Regione']=='Trentino-Alto Adige')]
     regioni = df[(df['Regione'] == 'Valle Aosta') | (df['Regione']=='Bolzano') | (df['Regione']=='Trentino-Alto Adige')]
-    regioni.to_csv('.\datasetRegioni\minValue.csv', sep=';', decimal=',', index=False)
+    regioni.to_csv('..\Dataset aggiornato\datasetRegioni\minValori.csv', sep=';', decimal=',', index=False)
     ########################### Dotazione Riscaldamento ###########################
     barWidth = 0.15
     fig, ax = plt.subplots(figsize = (10, 7))
@@ -139,7 +190,7 @@ def valoreMinimo():
     ax.set_xticks([])
 
     ax.legend(loc="lower right")
-    plt.savefig('.\minValori\dotazioneRiscaldamento.png', dpi=300)
+    plt.savefig('..\Dataset aggiornato\minValori\dotazioneRiscaldamento.png', dpi=300)
     ########################### Dotazione Acqua Calda ###########################
     barWidth = 0.15
     fig, ax = plt.subplots(figsize = (10, 7))
@@ -166,7 +217,7 @@ def valoreMinimo():
     ax.set_xticks([])
 
     ax.legend(loc="lower right")
-    plt.savefig('.\minValori\dotazioneAcquaCalda.png', dpi=300)
+    plt.savefig('..\Dataset aggiornato\minValori\dotazioneAcquaCalda.png', dpi=300)
     ########################### Dotazione Condizionamento ###########################
     barWidth = 0.15
     fig, ax = plt.subplots(figsize = (10, 7))
@@ -194,29 +245,24 @@ def valoreMinimo():
 
     ax.legend(loc="upper right")
 
-    plt.savefig('.\minValori\dotazioneCondizionamento.png', dpi=300)
-def concatena():
-    data1 = pd.read_csv('.\datasetRegioni\maxValue.csv', sep=';')
-    data2 = pd.read_csv('.\datasetRegioni\minValue.csv', sep=';')
+    plt.savefig('..\Dataset aggiornato\minValori\dotazioneCondizionamento.png', dpi=300)
+def concatenaMaxMinValori():
+    data1 = pd.read_csv('..\Dataset aggiornato\datasetRegioni\maxValori.csv', sep=';')
+    data2 = pd.read_csv('..\Dataset aggiornato\datasetRegioni\minValori.csv', sep=';')
     concatenazione = pd.concat([data1, data2], axis=0)
-    concatenazione.to_csv('.\datasetLeggibile\RegioniInteressate.csv', sep=';', index=0, decimal=',')
-def datasetSpecificheAcquaCalda():
-    data = pd.read_csv('datasetSpecifiche.csv', sep=',')
-    data = data.replace(['..'],'0.0')
-    data = data.replace(['....'], 'NULL')
-    data = data.replace(['-'], 'NULL')
-    conversioneToCsv=data.to_csv('.\datasetLeggibile\datasetAcquaCalda_updated.csv', index=False, sep=';', decimal=',')
+    concatenazione.to_csv('..\Dataset aggiornato\datasetLeggibile\Regioni_concatenate.csv', sep=';', index=0, decimal=',')
 def concatenaDatasetAcquaCalda():
-    data1 = pd.read_csv('.\datasetLeggibile\datasetSpecificheAcquaCalda.csv', usecols = ['REGIONE', 'Metano', 'Energia Solare'], sep=';', decimal=',')
+    data1 = pd.read_csv('..\Dataset aggiornato\datasetAcquaCalda.csv', usecols = ['Regione', 'Metano', 'Energia Solare'], sep=',')
     data1.columns = ('Regione', 'Metano', 'Energia_Solare')
-    data2 = pd.read_csv('.\datasetLeggibile\RegioniInteressate.csv', usecols=['Dotazione_acqua_calda'], sep=';', decimal=',')
+    data2 = pd.read_csv('..\Dataset aggiornato\datasetLeggibile\Regioni_concatenate.csv', usecols=['Dotazione_acqua_calda'], sep=';', decimal=',')
     regioni = data1[(data1['Regione']=='Veneto') | (data1['Regione']=='Emilia-Romagna') | (data1['Regione'] == 'Sardegna') | (data1['Regione'] == 'Valle Aosta') | (data1['Regione']=='Bolzano') | (data1['Regione']=='Trentino-Alto Adige')]
-    regioni.to_csv('.\datasetLeggibile\datasetAcquaCalda_regioniInteressate.csv', sep = ';', decimal=',', index=0)
-    data3 = pd.read_csv('.\datasetLeggibile\datasetAcquaCalda_regioniInteressate.csv', sep=';', decimal=',')
+    regioni.to_csv('..\Dataset aggiornato\datasetLeggibile\datasetAcquaCalda_1.csv', sep = ';', decimal=',', index=0)
+    data3 = pd.read_csv('..\Dataset aggiornato\datasetLeggibile\datasetAcquaCalda_1.csv', sep=';', decimal=',')
     a=pd.concat([data3, data2], axis=1)
-    a.to_csv('.\datasetLeggibile\datasetConcatenatoAcquaCalda.csv', sep=';', index=0, decimal=',')
-def datasetAcquaCaldaElementi():
-    df = pd.read_csv('.\datasetLeggibile\datasetConcatenatoAcquaCalda.csv', decimal=',', sep=';',index_col=0)
+    a.to_csv('..\Dataset aggiornato\datasetLeggibile\datasetAcquaCalda_concatenato.csv', sep=';', index=0, decimal=',')
+    os.remove("..\Dataset aggiornato\datasetLeggibile\datasetAcquaCalda_1.csv")
+def datasetAcquaCalda_grafici():
+    df = pd.read_csv('..\Dataset aggiornato\datasetLeggibile\datasetAcquaCalda_concatenato.csv', decimal=',', sep=';',index_col=0)
     maxValueEnergia = df[['Energia_Solare']].max(axis=1).sort_values(ascending=False).reset_index(name='Energia Solare max')
     maxValueMetano = df[['Metano']].max(axis=1).sort_values(ascending=False).reset_index(name='Metano max')
 
@@ -227,7 +273,7 @@ def datasetAcquaCaldaElementi():
     print(minValueEnergia, "\n")
     print(minValueMetano)
 
-    df2 = pd.read_csv('.\datasetLeggibile\datasetConcatenatoAcquaCalda.csv', decimal=',', sep=';')
+    df2 = pd.read_csv('..\Dataset aggiornato\datasetLeggibile\datasetAcquaCalda_concatenato.csv', decimal=',', sep=';')
     ########################### Metano consumi maggiori ###########################
     barWidth = 0.15
     fig, ax = plt.subplots(figsize = (10, 7))
@@ -259,7 +305,7 @@ def datasetAcquaCaldaElementi():
     ax.set_xticks([])
 
     ax.legend(loc="upper right")
-    plt.savefig('.\datasetRegioni\consumoAcqua\metano_max.png', dpi=300)
+    plt.savefig('..\Dataset aggiornato\datasetRegioni\consumoAcqua\metano_max.png', dpi=300)
     ########################### Energia Solare consumi maggiori ###########################
     barWidth = 0.15
     fig, ax = plt.subplots(figsize = (10, 7))
@@ -291,7 +337,7 @@ def datasetAcquaCaldaElementi():
     ax.set_xticks([])
 
     ax.legend(loc="upper right")
-    plt.savefig('.\datasetRegioni\consumoAcqua\energia_solare_max.png', dpi=300)
+    plt.savefig('..\Dataset aggiornato\datasetRegioni\consumoAcqua\energia_solare_max.png', dpi=300)
     ########################### Metano consumi minori ###########################
     barWidth = 0.15
     fig, ax = plt.subplots(figsize = (10, 7))
@@ -323,7 +369,7 @@ def datasetAcquaCaldaElementi():
     ax.set_xticks([])
 
     ax.legend(loc="upper right")
-    plt.savefig('.\datasetRegioni\consumoAcqua\metano_min.png', dpi=300)
+    plt.savefig('..\Dataset aggiornato\datasetRegioni\consumoAcqua\metano_min.png', dpi=300)
     ########################### Energia Solare consumi minori ###########################
     barWidth = 0.15
     fig, ax = plt.subplots(figsize = (10, 7))
@@ -355,24 +401,18 @@ def datasetAcquaCaldaElementi():
     ax.set_xticks([])
 
     ax.legend(loc="upper right")
-    plt.savefig('.\datasetRegioni\consumoAcqua\energia_solare_min.png', dpi=300)
-def datasetSpecificheCondizionamento():
-    data = pd.read_csv('datasetCondizionamento.csv', sep=';', usecols=['Regione', 'Tutti i giorni o quasi', 'Qualche giorno a settimana', 'Qualche giorno al mese', 'Solo occasionalmente o mai'])
-    data.columns = ['Regione', 'Giornalmente', 'Spesso', 'Raramente', 'Occasionalmente o Mai']
-    data = data.replace(['..'],'0.0')
-    data = data.replace(['....'], 'NULL')
-    data = data.replace(['-'], 'NULL')
-    conversioneToCsv=data.to_csv('.\datasetLeggibile\datasetCondizionamento_updated.csv',index=False, sep=';', decimal=',')
+    plt.savefig('..\Dataset aggiornato\datasetRegioni\consumoAcqua\energia_solare_min.png', dpi=300)
 def concatenaDatasetCondizionamento():
-    data1 = pd.read_csv('.\datasetLeggibile\datasetCondizionamento_updated.csv', sep=';', decimal=',')
-    data2 = pd.read_csv('.\datasetLeggibile\RegioniInteressate.csv', usecols=['Dotazione_condizionamento'], sep=';', decimal=',')
+    data1 = pd.read_csv('..\Dataset aggiornato\datasetCondizionamento.csv', sep=',')
+    data2 = pd.read_csv('..\Dataset aggiornato\datasetLeggibile\Regioni_concatenate.csv', usecols=['Dotazione_condizionamento'], sep=';', decimal=',')
     regioni = data1[(data1['Regione']=='Veneto') | (data1['Regione']=='Emilia-Romagna') | (data1['Regione'] == 'Sardegna') | (data1['Regione'] == 'Valle Aosta') | (data1['Regione']=='Bolzano') | (data1['Regione']=='Trentino-Alto Adige')]
-    regioni.to_csv('.\datasetLeggibile\datasetCondizionamento_regioniInteressate.csv', sep = ';', decimal=',', index=0)
-    data3 = pd.read_csv('.\datasetLeggibile\datasetCondizionamento_regioniInteressate.csv', sep=';', decimal=',')
+    regioni.to_csv('..\Dataset aggiornato\datasetLeggibile\datasetCondizionamento_1.csv', sep = ';', decimal=',', index=0)
+    data3 = pd.read_csv('..\Dataset aggiornato\datasetLeggibile\datasetCondizionamento_1.csv', sep=';', decimal=',')
     a=pd.concat([data3, data2], axis=1)
-    a.to_csv('.\datasetLeggibile\datasetConcatenatoCondizionamento.csv', sep=';', index=0, decimal=',')
-def datasetCondizionamentoElementi():
-    df = pd.read_csv('.\datasetLeggibile\datasetConcatenatoCondizionamento.csv', decimal=',', sep=';',index_col=0)
+    a.to_csv('..\Dataset aggiornato\datasetLeggibile\datasetCondizionamento_concatenato.csv', sep=';', index=0, decimal=',')
+    os.remove("..\Dataset aggiornato\datasetLeggibile\datasetCondizionamento_1.csv")
+def datasetCondizionamento_grafici():
+    df = pd.read_csv('..\Dataset aggiornato\datasetLeggibile\datasetCondizionamento_concatenato.csv', decimal=',', sep=';',index_col=0)
     df.columns = ['Giornalmente', 'Spesso', 'Raramente', 'Occasionalmente_o_mai', 'Dotazione_condizionamento']
     giornalmenteValue = df[['Giornalmente']].max(axis=1).sort_values(ascending=False).reset_index(name='Giornalmente')
     spessoValue = df[['Spesso']].max(axis=1).sort_values(ascending=False).reset_index(name='Spesso')
@@ -380,7 +420,7 @@ def datasetCondizionamentoElementi():
     occasionalmente_o_maiValue = df[['Occasionalmente_o_mai']].min(axis=1).sort_values(ascending=True).reset_index(name='Occasionalmente o mai')
     print(giornalmenteValue, "\n", spessoValue, "\n", raramenteValue, "\n", occasionalmente_o_maiValue)
 
-    df2 = pd.read_csv('.\datasetLeggibile\datasetConcatenatoCondizionamento.csv', decimal=',', sep=';')
+    df2 = pd.read_csv('..\Dataset aggiornato\datasetLeggibile\datasetCondizionamento_concatenato.csv', decimal=',', sep=';')
     df2.columns = ['Regione', 'Giornalmente', 'Spesso', 'Raramente', 'Occasionalmente_o_mai', 'Dotazione_condizionamento']
     ########################### Giornalmente consumi ###########################
     barWidth = 0.15
@@ -430,7 +470,7 @@ def datasetCondizionamentoElementi():
     ax.set_xticks([])
 
     ax.legend(loc="upper right")
-    plt.savefig('.\datasetRegioni\consumoCondizionamento\consumoGiornaliero.png', dpi=300)
+    plt.savefig('..\Dataset aggiornato\datasetRegioni\consumoCondizionamento\consumoGiornaliero.png', dpi=300)
     ########################### Spesso consumi ###########################   
     barWidth = 0.15
     fig, ax = plt.subplots(figsize = (10, 7))
@@ -465,7 +505,7 @@ def datasetCondizionamentoElementi():
     ax.set_xticks([])
 
     ax.legend(loc="upper right")
-    plt.savefig('.\datasetRegioni\consumoCondizionamento\consumoSpesso.png', dpi=300)
+    plt.savefig('..\Dataset aggiornato\datasetRegioni\consumoCondizionamento\consumoSpesso.png', dpi=300)
     ########################### Raramente consumi ###########################
     barWidth = 0.15
     fig, ax = plt.subplots(figsize = (10, 7))
@@ -500,7 +540,7 @@ def datasetCondizionamentoElementi():
     ax.set_xticks([])
 
     ax.legend(loc="upper right")
-    plt.savefig('.\datasetRegioni\consumoCondizionamento\consumoRaramente.png', dpi=300)
+    plt.savefig('..\Dataset aggiornato\datasetRegioni\consumoCondizionamento\consumoRaramente.png', dpi=300)
     ########################### Occasionalmente o mai consumi ###########################
     barWidth = 0.15
     fig, ax = plt.subplots(figsize = (10, 7))
@@ -535,30 +575,24 @@ def datasetCondizionamentoElementi():
     ax.set_xticks([])
 
     ax.legend(loc="upper right")
-    plt.savefig('.\datasetRegioni\consumoCondizionamento\consumoOccasionalmente_o_mai.png', dpi=300)
-def datasetSpecificheRiscaldamento():
-    data = pd.read_csv('datasetRiscaldamento.csv', sep=';')
-    data.columns = ['Regione', 'Mattina', 'Pomeriggio', 'Sera', 'Totale']
-    data = data.replace(['..'],'0.0')
-    data = data.replace(['....'], 'NULL')
-    data = data.replace(['-'], 'NULL')
-    conversioneToCsv=data.to_csv('.\datasetLeggibile\datasetRiscaldamento_updated.csv', index = False, sep=';', decimal=',')
+    plt.savefig('..\Dataset aggiornato\datasetRegioni\consumoCondizionamento\consumoOccasionalmente_o_mai.png', dpi=300)
 def concatenaDatasetRiscaldamento():
-    data1 = pd.read_csv('.\datasetLeggibile\datasetRiscaldamento_updated.csv', usecols=['Regione', 'Mattina', 'Pomeriggio', 'Sera'], sep=';', decimal=',')
-    data2 = pd.read_csv('.\datasetLeggibile\RegioniInteressate.csv', usecols=['Dotazione_riscaldamento'], sep=';', decimal=',')
+    data1 = pd.read_csv('..\Dataset aggiornato\datasetLeggibile\datasetRiscaldamento_updated.csv', usecols=['Regione', 'Mattina', 'Pomeriggio', 'Sera'], sep=';', decimal=',')
+    data2 = pd.read_csv('..\Dataset aggiornato\datasetLeggibile\Regioni_concatenate.csv', usecols=['Dotazione_riscaldamento'], sep=';', decimal=',')
     regioni = data1[(data1['Regione']=='Veneto') | (data1['Regione']=='Emilia-Romagna') | (data1['Regione'] == 'Sardegna') | (data1['Regione'] == 'Valle Aosta') | (data1['Regione']=='Bolzano') | (data1['Regione']=='Trentino-Alto Adige')]
-    regioni.to_csv('.\datasetLeggibile\datasetCondizionamento_regioniInteressate.csv', sep = ';', decimal=',', index=0)
-    data3 = pd.read_csv('.\datasetLeggibile\datasetCondizionamento_regioniInteressate.csv', sep=';', decimal=',')
+    regioni.to_csv('..\Dataset aggiornato\datasetLeggibile\datasetCondizionamento_1.csv', sep = ';', decimal=',', index=0)
+    data3 = pd.read_csv('..\Dataset aggiornato\datasetLeggibile\datasetCondizionamento_1.csv', sep=';', decimal=',')
     a=pd.concat([data3, data2], axis=1)
-    a.to_csv('.\datasetLeggibile\datasetConcatenatoRiscaldamento.csv', sep=';', index=0, decimal=',')
-def datasetRiscaldamentoElementi():
-    df = pd.read_csv('.\datasetLeggibile\datasetConcatenatoRiscaldamento.csv', usecols=['Regione', 'Mattina', 'Pomeriggio', 'Sera'], decimal=',', sep=';', index_col=0)
+    a.to_csv('..\Dataset aggiornato\datasetLeggibile\datasetRiscaldamento_concatenato.csv', sep=';', index=0, decimal=',')
+    os.remove("..\Datset aggiornato\datasetLeggibile\datasetCondizionamento_1.csv")
+def datasetRiscaldamento_grafici():
+    df = pd.read_csv('..\Dataset aggiornato\datasetLeggibile\datasetRiscaldamento_concatenato.csv', usecols=['Regione', 'Mattina', 'Pomeriggio', 'Sera'], decimal=',', sep=';', index_col=0)
     mattinaValue = df[['Mattina']].max(axis=1).sort_values(ascending=False).reset_index(name='Mattina')
     pomeriggioValue = df[['Pomeriggio']].min(axis=1).sort_values(ascending=True).reset_index(name='Pomeriggio')
     seraValue = df[['Sera']].min(axis=1).sort_values(ascending=True).reset_index(name='Sera')
     print(mattinaValue, "\n", pomeriggioValue, "\n", seraValue)
 
-    df2 = pd.read_csv('.\datasetLeggibile\datasetConcatenatoRiscaldamento.csv', decimal=',', sep=';')
+    df2 = pd.read_csv('..\Dataset aggiornato\datasetLeggibile\datasetRiscaldamento_concatenato.csv', decimal=',', sep=';')
     ########################### Mattina consumi ###########################
     barWidth = 0.15
     fig, ax = plt.subplots(figsize = (10, 7))
@@ -608,7 +642,7 @@ def datasetRiscaldamentoElementi():
     ax.set_xticks([])
 
     ax.legend(loc="upper right")
-    plt.savefig('.\datasetRegioni\consumoRiscaldamento\consumoMattina.png', dpi=300)
+    plt.savefig('..\Dataset aggiornato\datasetRegioni\consumoRiscaldamento\consumoMattina.png', dpi=300)
     ########################### Pomeriggio consumi ###########################
     barWidth = 0.15
     fig, ax = plt.subplots(figsize = (10, 7))
@@ -644,7 +678,7 @@ def datasetRiscaldamentoElementi():
     ax.set_xticks([])
 
     ax.legend(loc="upper right")
-    plt.savefig('.\datasetRegioni\consumoRiscaldamento\consumoPomeriggio.png', dpi=300)
+    plt.savefig('..\Dataset aggiornato\datasetRegioni\consumoRiscaldamento\consumoPomeriggio.png', dpi=300)
     ########################### Sera consumi ###########################
     barWidth = 0.15
     fig, ax = plt.subplots(figsize = (10, 7))
@@ -680,17 +714,15 @@ def datasetRiscaldamentoElementi():
     ax.set_xticks([])
 
     ax.legend(loc="upper right")
-    plt.savefig('.\datasetRegioni\consumoRiscaldamento\consumoSera.png', dpi=300)
-def conversioneToJSON(csvFilePath, jsonFilePath):
+    plt.savefig('..\Dataset aggiornato\datasetRegioni\consumoRiscaldamento\consumoSera.png', dpi=300)
+def conversioneToJSON():
     jsonArray = []
-    with open(csvFilePath, encoding='utf-8') as csvf: 
+    percorsoCSV = r''
+    percorsoJSON = r''
+    with open(percorsoCSV, encoding='utf-8') as csvf: 
         csvReader = csv.DictReader(csvf) 
         for row in csvReader: 
             jsonArray.append(row)
-    with open(jsonFilePath, 'w', encoding='utf-8') as jsonf: 
+    with open(percorsoJSON, 'w', encoding='utf-8') as jsonf: 
         jsonString = json.dumps(jsonArray, indent=4)
         jsonf.write(jsonString)
-
-csvFilePath = r'.\datasetToJSON\datasetRiscaldamento.csv'
-jsonFilePath = r'.\datasetToJSON\datasetRiscaldamento_iniziale.json'
-conversioneToJSON(csvFilePath, jsonFilePath)

@@ -1,50 +1,156 @@
 [
     {
+        "Regione": "Piemonte",
+        "Giornalmente": "22.8",
+        "Spesso": "36.8",
+        "Raramente": "12.6",
+        "Occasionalmente o Mai": "27.7"
+    },
+    {
         "Regione": "Valle Aosta",
         "Giornalmente": "22.0",
         "Spesso": "13.8",
         "Raramente": "20.8",
-        "Occasionalmente o Mai": "43.5",
-        "Dotazione_condizionamento": "70.0"
+        "Occasionalmente o Mai": "43.5"
+    },
+    {
+        "Regione": "Liguria",
+        "Giornalmente": "24.1",
+        "Spesso": "30.6",
+        "Raramente": "10.6",
+        "Occasionalmente o Mai": "34.8"
+    },
+    {
+        "Regione": "Lombardia",
+        "Giornalmente": "28.8",
+        "Spesso": "36.1",
+        "Raramente": "13.0",
+        "Occasionalmente o Mai": "22.1"
     },
     {
         "Regione": "Trentino-Alto Adige",
         "Giornalmente": "23.9",
         "Spesso": "33.7",
         "Raramente": "9.6",
-        "Occasionalmente o Mai": "32.8",
-        "Dotazione_condizionamento": "60.3"
+        "Occasionalmente o Mai": "32.8"
     },
     {
         "Regione": "Bolzano",
         "Giornalmente": "22.9",
         "Spesso": "36.8",
         "Raramente": "12.1",
-        "Occasionalmente o Mai": "28.2",
-        "Dotazione_condizionamento": "59.9"
+        "Occasionalmente o Mai": "28.2"
+    },
+    {
+        "Regione": "Trento",
+        "Giornalmente": "24.8",
+        "Spesso": "31.0",
+        "Raramente": "7.4",
+        "Occasionalmente o Mai": "36.8"
     },
     {
         "Regione": "Veneto",
         "Giornalmente": "32.7",
         "Spesso": "38.9",
         "Raramente": "11.1",
-        "Occasionalmente o Mai": "17.2",
-        "Dotazione_condizionamento": "4.7"
+        "Occasionalmente o Mai": "17.2"
+    },
+    {
+        "Regione": "Friuli-Venezia Giulia",
+        "Giornalmente": "23.5",
+        "Spesso": "37.1",
+        "Raramente": "12.9",
+        "Occasionalmente o Mai": "26.4"
     },
     {
         "Regione": "Emilia-Romagna",
         "Giornalmente": "28.2",
         "Spesso": "35.2",
         "Raramente": "11.7",
-        "Occasionalmente o Mai": "24.9",
-        "Dotazione_condizionamento": "15.2"
+        "Occasionalmente o Mai": "24.9"
+    },
+    {
+        "Regione": "Toscana",
+        "Giornalmente": "30.2",
+        "Spesso": "32.3",
+        "Raramente": "12.6",
+        "Occasionalmente o Mai": "24.9"
+    },
+    {
+        "Regione": "Umbria",
+        "Giornalmente": "27.2",
+        "Spesso": "35.5",
+        "Raramente": "13.4",
+        "Occasionalmente o Mai": "23.8"
+    },
+    {
+        "Regione": "Marche",
+        "Giornalmente": "23.4",
+        "Spesso": "34.0",
+        "Raramente": "13.1",
+        "Occasionalmente o Mai": "29.5"
+    },
+    {
+        "Regione": "Lazio",
+        "Giornalmente": "28.6",
+        "Spesso": "35.0",
+        "Raramente": "13.7",
+        "Occasionalmente o Mai": "22.7"
+    },
+    {
+        "Regione": "Abruzzo",
+        "Giornalmente": "26.0",
+        "Spesso": "32.3",
+        "Raramente": "16.7",
+        "Occasionalmente o Mai": "24.9"
+    },
+    {
+        "Regione": "Molise",
+        "Giornalmente": "18.0",
+        "Spesso": "31.8",
+        "Raramente": "13.2",
+        "Occasionalmente o Mai": "37.0"
+    },
+    {
+        "Regione": "Campania",
+        "Giornalmente": "27.5",
+        "Spesso": "34.0",
+        "Raramente": "11.7",
+        "Occasionalmente o Mai": "26.8"
+    },
+    {
+        "Regione": "Puglia",
+        "Giornalmente": "30.1",
+        "Spesso": "33.7",
+        "Raramente": "10.4",
+        "Occasionalmente o Mai": "25.8"
+    },
+    {
+        "Regione": "Basilicata",
+        "Giornalmente": "25.3",
+        "Spesso": "32.0",
+        "Raramente": "12.9",
+        "Occasionalmente o Mai": "29.8"
+    },
+    {
+        "Regione": "Calabria",
+        "Giornalmente": "25.5",
+        "Spesso": "34.9",
+        "Raramente": "12.0",
+        "Occasionalmente o Mai": "27.6"
+    },
+    {
+        "Regione": "Sicilia",
+        "Giornalmente": "28.1",
+        "Spesso": "36.0",
+        "Raramente": "10.3",
+        "Occasionalmente o Mai": "25.6"
     },
     {
         "Regione": "Sardegna",
         "Giornalmente": "32.0",
         "Spesso": "31.9",
         "Raramente": "12.0",
-        "Occasionalmente o Mai": "24.2",
-        "Dotazione_condizionamento": "14.4"
+        "Occasionalmente o Mai": "24.2"
     }
 ]
