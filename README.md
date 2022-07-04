@@ -5,17 +5,17 @@ a cura degli studenti:
 
 # Sommario
 
-[Idea del progetto 1](#_Toc107852611)
+[Idea del progetto]
 
-[Dataset utilizzato 1](#_Toc107852612)
+[Dataset utilizzato]
 
-[Procedimento 2](#_Toc107852613)
+[Procedimento]
 
-[Manipolazione dei dataset 2](#_Toc107852614)
+[Manipolazione dei dataset]
 
-[Utilizzo di Protégé 3](#_Toc107852615)
+[Utilizzo di Protégé]
 
-[Conversione CSV in JSON 4](#_Toc107852616)
+[Conversione CSV in JSON]
 
 # Idea del progetto
 
