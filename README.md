@@ -3,20 +3,6 @@
 a cura degli studenti:
  Francesco Paolo Rosone, Salvatore Viganò
 
-# Sommario
-
-[Idea del progetto]
-
-[Dataset utilizzato]
-
-[Procedimento]
-
-[Manipolazione dei dataset]
-
-[Utilizzo di Protégé]
-
-[Conversione CSV in JSON]
-
 # Idea del progetto
 
 L&#39;idea di questa tesina nasce dalla possibilità di poter capire quali e quante regioni d&#39;Italia ad oggi hanno i più alti consumi energetici a carico delle famiglie nel 2021. Il dataset che abbiamo a disposizione, infatti, contiene le percentuali di famiglie delle regioni italiane che hanno in dotazione uno di questi servizi: riscaldamento dell&#39;abitazione, acqua calda e condizionamento.
