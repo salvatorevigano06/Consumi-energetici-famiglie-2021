@@ -3,20 +3,6 @@
 a cura degli studenti:
  Francesco Paolo Rosone, Salvatore Viganò
 
-# Sommario
-
-[Idea del progetto 1](#_Toc107852611)
-
-[Dataset utilizzato 1](#_Toc107852612)
-
-[Procedimento 2](#_Toc107852613)
-
-[Manipolazione dei dataset 2](#_Toc107852614)
-
-[Utilizzo di Protégé 3](#_Toc107852615)
-
-[Conversione CSV in JSON 4](#_Toc107852616)
-
 # Idea del progetto
 
 L&#39;idea di questa tesina nasce dalla possibilità di poter capire quali e quante regioni d&#39;Italia ad oggi hanno i più alti consumi energetici a carico delle famiglie nel 2021. Il dataset che abbiamo a disposizione, infatti, contiene le percentuali di famiglie delle regioni italiane che hanno in dotazione uno di questi servizi: riscaldamento dell&#39;abitazione, acqua calda e condizionamento.
@@ -110,5 +96,3 @@ Per creare queste ontologie personalizzate abbiamo utilizzato il software _Prot�
 # Conversione CSV in JSON
 
 Concludendo il nostro progetto, l&#39;ultimo passaggio necessario per far sì che avessimo tutto a portata di mano era di convertire tutti i .csv utilizzati in .json. Per farlo, abbiamo creato una funzione chiamata _conversioneToJSON()_ dove, attraverso le librerie _csv_ e _json_, abbiamo utilizzato un csvReader (in particolare _csv.DictReader()_) e per ogni riga ottenuta verrà inserita ogni coppia chiave valore nel json con il metodo _append_.
-
-1
